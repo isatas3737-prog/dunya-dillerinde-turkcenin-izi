@@ -1,0 +1,4 @@
+koyun, Türkiye, koyun
+koyun, Azerbaijan, quzu
+çay, Türkiye, çay
+çay, China, chay

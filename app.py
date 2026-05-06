@@ -1,0 +1,212 @@
+# app.py
+import streamlit as st
+import pycountry
+import plotly.graph_objects as go
+import os
+
+st.set_page_config(layout="wide", page_title="Kelime → Yerel Karşılık Haritası")
+st.title("🌍 Kelime → Ülke Bazlı Yerel Karşılık Haritası")
+
+# --- kelime.txt oku ---
+cwd = os.getcwd()
+path = os.path.join(cwd, "kelime.txt")
+if not os.path.exists(path):
+    st.error("kelime.txt bulunamadı. Lütfen app.py ile aynı klasöre koyun.")
+    st.stop()
+
+with open(path, "r", encoding="utf-8-sig") as f:
+    raw = f.read()
+
+# --- esnek parse fonksiyonu ---
+def parse_text(text: str):
+    # mapping: kelime -> list of entries {country_raw, local}
+    mapping = {}
+    for line in text.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        # iki ana durum: "kelime,rest" veya "kelime rest" (virgül beklenir)
+        if "," in line:
+            key, rest = line.split(",", 1)
+        elif ":" in line:
+            key, rest = line.split(":", 1)
+        else:
+            continue
+        key = key.strip()
+        # rest içinde birden çok ülke entry'si ; ile ayrılmış olabilir
+        parts = [p.strip() for p in rest.split(";") if p.strip()]
+        entries = []
+        for p in parts:
+            # p örnekleri: "Country|local", "Country,local", "Country:local", "Country"
+            country = None
+            local = None
+            if "|" in p:
+                country, local = p.split("|", 1)
+            elif "," in p:
+                country, local = p.split(",", 1)
+            elif ":" in p:
+                country, local = p.split(":", 1)
+            else:
+                country = p
+            country = country.strip() if country else None
+            local = local.strip() if local else None
+            if country:
+                entries.append({"country": country, "local": local})
+        if entries:
+            # eğer aynı kelime birden fazla satırda varsa ekle
+            if key in mapping:
+                mapping[key].extend(entries)
+            else:
+                mapping[key] = entries
+    return mapping
+
+mapping = parse_text(raw)
+if not mapping:
+    st.error("kelime.txt parse edilemedi veya uygun satır yok.")
+    st.stop()
+
+# --- basit Türkçe -> İngilizce ülke eşleme (gerekirse genişlet) ---
+tur_to_eng = {
+    "türkiye": "Turkey", "almanya": "Germany", "fransa": "France",
+    "italya": "Italy", "ispanya": "Spain", "ingiltere": "United Kingdom",
+    "çin": "China", "hindistan": "India", "brezilya": "Brazil", "meksika": "Mexico",
+    "japonya": "Japan", "rusya": "Russia", "kanada": "Canada", "avustralya": "Australia"
+}
+
+def name_to_iso3(name: str):
+    if not name:
+        return None
+    nm = name.strip()
+    # önce tur->eng sözlüğü ile dene
+    eng = tur_to_eng.get(nm.lower())
+    candidates = [eng] if eng else []
+    candidates.append(nm)
+    for cand in candidates:
+        if not cand:
+            continue
+        try:
+            c = pycountry.countries.get(name=cand)
+            if c:
+                return c.alpha_3
+        except Exception:
+            pass
+    # esnek arama
+    for cand in candidates:
+        for c in pycountry.countries:
+            if c.name.lower() == cand.lower():
+                return c.alpha_3
+            if hasattr(c, "official_name") and getattr(c, "official_name", "").lower() == cand.lower():
+                return c.alpha_3
+            if hasattr(c, "common_name") and getattr(c, "common_name", "").lower() == cand.lower():
+                return c.alpha_3
+    return None
+
+# --- UI ---
+st.sidebar.header("Ayarlar")
+words = sorted(mapping.keys(), key=lambda s: s.lower())
+selected = st.sidebar.selectbox("Bir kelime seçin", words)
+highlight_color = st.sidebar.color_picker("Vurgulama rengi", "#FF7F0E")
+base_color = "#E8E8E8"
+show_markers = st.sidebar.checkbox("Ülke işaretçileri göster", value=True)
+
+# --- seçili kelimenin girdilerini işle ---
+entries = mapping.get(selected, [])
+iso_list = []
+hover_texts = []
+unrecognized = []
+for e in entries:
+    country_raw = e.get("country")
+    local = e.get("local")
+    iso = name_to_iso3(country_raw)
+    if iso:
+        iso_list.append(iso)
+        if local:
+            hover_texts.append(f"{country_raw}\nYerel karşılık: {local}")
+        else:
+            hover_texts.append(f"{country_raw}")
+    else:
+        # tur->eng dene
+        eng = tur_to_eng.get(country_raw.lower())
+        if eng:
+            iso2 = name_to_iso3(eng)
+            if iso2:
+                iso_list.append(iso2)
+                if local:
+                    hover_texts.append(f"{country_raw}\nYerel karşılık: {local}")
+                else:
+                    hover_texts.append(f"{country_raw}")
+                continue
+        unrecognized.append(country_raw)
+
+# --- tüm dünya ISO-3 listesi ---
+all_iso = [c.alpha_3 for c in pycountry.countries]
+
+# --- Plotly figür ---
+fig = go.Figure()
+
+# dünya tabanı
+fig.add_trace(go.Choropleth(
+    locations=all_iso,
+    z=[0]*len(all_iso),
+    locationmode="ISO-3",
+    colorscale=[[0, base_color], [1, base_color]],
+    showscale=False,
+    marker_line_color="rgba(0,0,0,0.2)",
+    marker_line_width=0.2,
+    hoverinfo="none",
+    name="world"
+))
+
+# seçili ülkeler
+if iso_list:
+    fig.add_trace(go.Choropleth(
+        locations=iso_list,
+        z=[1]*len(iso_list),
+        locationmode="ISO-3",
+        colorscale=[[0, "white"], [1, highlight_color]],
+        showscale=False,
+        marker_line_color="black",
+        marker_line_width=1.4,
+        hoverinfo="text",
+        hovertext=hover_texts,
+        name="selected"
+    ))
+
+# işaretçiler
+if show_markers and iso_list:
+    fig.add_trace(go.Scattergeo(
+        locations=iso_list,
+        locationmode="ISO-3",
+        hoverinfo="text",
+        text=hover_texts,
+        mode="markers",
+        marker=dict(size=8, color=highlight_color, line=dict(width=1, color="white")),
+        name="markers"
+    ))
+
+fig.update_layout(
+    title_text=f"'{selected}' kelimesinin ülkelerdeki karşılıkları",
+    geo=dict(showframe=False, showcoastlines=True, projection_type="natural earth"),
+    margin=dict(l=10, r=10, t=50, b=10),
+    transition=dict(duration=600, easing="cubic-in-out")
+)
+
+# --- göster ve yan panel ---
+col1, col2 = st.columns([3,1])
+with col1:
+    st.plotly_chart(fig, use_container_width=True)
+with col2:
+    st.markdown("### Seçilen kelime")
+    st.write(selected)
+    st.markdown("### Ülkeler ve yerel karşılık")
+    for e in entries:
+        country_raw = e.get("country")
+        local = e.get("local")
+        if local:
+            st.write(f"- {country_raw}  —  Yerel karşılık: {local}")
+        else:
+            st.write(f"- {country_raw}")
+    if unrecognized:
+        st.markdown("### Tanınmayan ülke isimleri")
+        for u in unrecognized:
+            st.error(u)
