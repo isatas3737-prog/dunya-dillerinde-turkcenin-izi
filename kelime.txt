@@ -1,6 +1,6 @@
 abla, Türkiye, abla
 abla, Iran, abaci
-abla, Russia, apayka
+abla, Russian Federation, apayka
 abla, Armenia, abla
 abla, Hungary, bula
 abla, Serbia, bula
