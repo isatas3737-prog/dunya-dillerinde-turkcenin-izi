@@ -4,7 +4,7 @@ abla, Russian Federation, apayka
 abla, Armenia, abla
 abla, Hungary, bula
 abla, Serbia, bula
-abla, North Macedonia, bula
+abla, North North Macedonia, bula
 abla, Albania, bulle
 abla, Greece, abula
 
@@ -13,7 +13,7 @@ acı, Armenia, acı
 acı, Bulgaria, acemak
 acı, Serbia, adzja
 acı, Albania, axdis
-acı, North Macedonia, ajiya
+acı, North North Macedonia, ajiya
 
 açık, Türkiye, açık
 açık, Iran, açiğ
@@ -24,7 +24,7 @@ açık, Romania, acic
 açık, Bulgaria, açik
 açık, Serbia, acik
 açık, Albania, açik
-açık, North Macedonia, açik
+açık, North North Macedonia, açik
 açık, Greece, açih
 
 açıkgöz, Türkiye, açıkgöz
@@ -34,26 +34,26 @@ açıkgöz, Greece, açigközis
 
 ada, Türkiye, ada
 ada, Iran, aral
-ada, Russia, alar
+ada, Russian Federation, alar
 ada, Armenia, ada
 ada, Romania, adaliü
 ada, Bulgaria, ada
 ada, Serbia, ada
 ada, Albania, hade
-ada, North Macedonia, ada
+ada, North North Macedonia, ada
 
 adım, Türkiye, adım
 adım, Armenia, adim
 adım, Bulgaria, adim
 adım, Albania, adım
-adım, North Macedonia, adim
+adım, North North Macedonia, adim
 adım, Greece, adimi
 
 ağa, Türkiye, ağa
 ağa, China, aha
 ağa, Iran, aka
 ağa, Saudi Arabia, aga
-ağa, Russia, aga
+ağa, Russian Federation, aga
 ağa, Armenia, ağa
 ağa, Hungary, aga
 ağa, Romania, aga
@@ -68,7 +68,7 @@ ağa, United Kingdom, agha
 
 ağaç, Türkiye, ağaç
 ağaç, Saudi Arabia, akagac
-ağaç, Russia, agaç
+ağaç, Russian Federation, agaç
 ağaç, Armenia, agaç
 ağaç, Hungary, acs
 ağaç, Serbia, kraljagac
@@ -77,18 +77,18 @@ ağaç, Greece, agasluh
 araba, Türkiye, araba
 araba, Iran, araba
 araba, Saudi Arabia, araba
-araba, Russia, arba
+araba, Russian Federation, arba
 araba, Armenia, araba
 araba, Romania, srsbs
 araba, Bulgaria, araba
 araba, Albania, araba
-araba, North Macedonia, araba
+araba, North North Macedonia, araba
 araba, Greece, arabas
 
 baba, Türkiye, baba
 baba, Iran, baba
 baba, Saudi Arabia, baba
-baba, Russia, baba
+baba, Russian Federation, baba
 baba, Armenia, baba
 baba, Hungary, baba
 baba, Finland, paapo
@@ -96,37 +96,37 @@ baba, Romania, baba
 baba, Bulgaria, baba
 baba, Serbia, baba
 baba, Albania, baba
-baba, Macedonia, babalok
+baba, North Macedonia, babalok
 
 bacak, Türkiye, bacak
 bacak, Saudi Arabia, bacag
 bacak, Armenia, bacak
 bacak, Bulgaria, bacak
 bacak, Serbia, badzag
-bacak, Macedonia, bacak
+bacak, North Macedonia, bacak
 bacak, Greece, bacaki
 
 bacanak, Türkiye, bacanak
 bacanak, Iran, bacanak
 bacanak, Saudi Arabia, bacanak
-bacanak, Russia, bacınak
+bacanak, Russian Federation, bacınak
 bacak, Armenia, bacanak
 bacanak, Bulgaria, bacanak
 bacanak, Serbia, badzanak
 bacanak, Albania, baxhanak
-bacanak, Macedonia, bacanak
+bacanak, North Macedonia, bacanak
 bacanak, Greece, bacanakis
 
 baklava, Türkiye, baklava
 baklava, Iran, bakleva
 baklava, Albania, baklava
-baklava, Russia, pahlava
+baklava, Russian Federation, pahlava
 baklava, Armenia, paklava
 baklava, Romania, baclava
 baklava, Bulgaria, baklava
 baklava, Serbia, baklava
 baklava, Albania, baklava
-baklava, Macedonia, baklava
+baklava, North Macedonia, baklava
 baklava, Greece, baklavas
 baklava, United Kingdom, baklava
 
@@ -134,7 +134,7 @@ baş, Türkiye, baş
 baş, China, basi
 baş, Iran, başi
 baş, Pakistan, baş
-baş, Russia, baş
+baş, Russian Federation, baş
 baş, Saudi Arabia, baş
 baş, Armenia, baş
 baş, Hungary, pas aga
@@ -142,7 +142,7 @@ baş, Romania, baş
 baş, Bulgaria, baş
 baş, Serbia, baş
 baş, Albania, bash
-baş, Macedonia, baş
+baş, North Macedonia, baş
 baş, Greece, basias
 
 bey, Türkiye, bey
@@ -150,7 +150,7 @@ bey, China, boke
 bey, Iran, bek
 bey, Pakistan, beg
 bey, Saudi Arabia, bag
-bey, Russia, beg
+bey, Russian Federation, beg
 bey, Armenia, beg
 bey, Hungary, beg
 bey, Romania, bei
@@ -159,7 +159,7 @@ bey, Bulgaria, beg
 bey, Serbia, beg
 bey, Italy, bei
 bey, Albania, bek
-bey, Macedonia, beg
+bey, North Macedonia, beg
 bey, Greece, beis
 bey, Germany ,bei
 bey, United Kingdom, bey
@@ -167,7 +167,7 @@ bey, United Kingdom, bey
 bıçak, Türkiye, bıçak
 bıçak, Iran, biçak
 bıçak, Saudi Arabia, büçak
-bıçak, Russia, biçak
+bıçak, Russian Federation, biçak
 bıçak, Armenia, buçak
 bıçak, Hungary, bicsak
 bıçak, Romania, briceok
@@ -175,8 +175,8 @@ bıçak, Czech Republic, biciak
 bıçak, Bulgaria, biçak
 bıçak, Serbia, bicak
 bıçak, Italy, bizzaco
-bıçak, Albenia, bixhak
-bıçak, Macedonia, biçak
+bıçak, Albania, bixhak
+bıçak, North Macedonia, biçak
 bıçak, Greece, biçazis
 
 biçim, Türkiye, biçim
@@ -185,14 +185,14 @@ biçim, Armenia, biçim
 biçim, Bulgaria, biçim
 biçim, Serbia, bicum
 biçim, Albania, biçim
-biçim, Macedonia, biçim
+biçim, North Macedonia, biçim
 biçim, Greece, biçimi
 biçim, Iran, beçin
 
 bilezik, Türkiye, bilezik
 bilezik, Iran, bilerzük
 bilezik, Albania, bilazik
-bilezik, Russia, belezek
+bilezik, Russian Federation, belezek
 bilezik, Armenia, bilezik
 bilezik, Hungary, bilines
 bilezik, Romania, belezic
