@@ -20,7 +20,7 @@ else:
     # Dosya bulunamazsa hata vermemesi için boş bırakıyoruz
     bg_image_url = ""
 
-# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran, Menü Gizleme ve Panel Sabitleme ---
+# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran, Menü Gizleme, Panel Sabitleme ve MOBİL UYUMLULUK ---
 custom_css = """
 <style>
 /* Sağ üstteki 'Share' menüsünü, header'ı ve footer'ı tamamen gizleme */
@@ -28,7 +28,7 @@ custom_css = """
 header {visibility: hidden; height: 0px !important;}
 footer {visibility: hidden;}
 
-/* Yan paneli kapatma (ok) tuşunu ve 'keyboard_double' yazısını KESİN olarak gizleme */
+/* MASAÜSTÜ: Yan paneli kapatma (ok) tuşunu ve 'keyboard_double' yazısını KESİN olarak gizleme */
 [data-testid="collapsedControl"],
 [data-testid="stSidebarCollapseButton"],
 button[kind="header"] {
@@ -63,6 +63,50 @@ html, body, p, span, div, li {
     font-family: 'Georgia', serif !important;
     color: #3E2723;
 }
+
+/* --- MOBİL UYUMLULUK (RESPONSIVE) AYARLARI --- */
+@media (max-width: 768px) {
+    /* Mobilde yan panelin tüm ekranı kaplaması ve esnek olması için */
+    [data-testid="stSidebar"] {
+        min-width: 100% !important;
+        max-width: 100% !important; 
+    }
+    
+    /* Mobilde başlık boyutlarını küçültüyoruz ki ekrana sığsın */
+    h1 {
+        font-size: 1.6rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* Mobilde Türk bayrağı boyutunu küçültüyoruz */
+    h1 img {
+        width: 35px !important;
+        margin-right: 10px !important;
+    }
+    
+    /* Mobilde mecburen menü açma/kapama (ok) tuşunu GÖRÜNÜR yapıyoruz */
+    [data-testid="collapsedControl"],
+    [data-testid="stSidebarCollapseButton"] {
+        display: inline-flex !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        visibility: visible !important;
+        width: auto !important;
+        height: auto !important;
+        position: relative !important;
+        background-color: rgba(139, 0, 0, 0.85) !important; /* Bordo Arka Plan */
+        border-radius: 6px !important;
+        margin: 10px !important;
+        z-index: 99999 !important;
+    }
+    
+    /* Mobildeki butonun ikonunu beyaz yapıyoruz */
+    [data-testid="collapsedControl"] svg,
+    [data-testid="stSidebarCollapseButton"] svg {
+        fill: white !important;
+        color: white !important;
+    }
+}
 </style>
 """
 # Hazırladığımız yerel base64 görselini CSS kodunun içine yerleştiriyoruz
@@ -72,7 +116,7 @@ st.markdown(custom_css, unsafe_allow_html=True)
 # --- 4. Başlık (HTML ile gerçek Türk Bayrağı resmi eklendi) ---
 st.markdown(
     """
-    <h1 style="display: flex; align-items: center; color: #8B0000; font-family: 'Georgia', serif; font-size: 2.5rem; margin-bottom: 20px;">
+    <h1 style="display: flex; align-items: center; color: #8B0000; font-family: 'Georgia', serif; margin-bottom: 20px;">
         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg" width="55" style="margin-right: 15px; border-radius: 4px; box-shadow: 0px 2px 4px rgba(0,0,0,0.3);">
         Dünya Dillerinde Türkçenin İzi
     </h1>
