@@ -2,7 +2,7 @@ import streamlit as st
 import pycountry
 import plotly.graph_objects as go
 import os
-import base64 
+import base64 # Yerel görseli CSS içine gömmek için gerekli kütüphane
 
 # --- 1. Sayfa Ayarları ve Başlık ---
 st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi", initial_sidebar_state="expanded")
@@ -11,59 +11,35 @@ st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi
 cwd = os.getcwd()
 bg_image_path = os.path.join(cwd, "arkaplan.jpg")
 
+# Eğer arkaplan.jpg varsa onu oku ve base64'e çevir, yoksa boş veya varsayılan bir renk bırak
 if os.path.exists(bg_image_path):
     with open(bg_image_path, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode()
     bg_image_url = f"data:image/jpeg;base64,{encoded_string}"
 else:
+    # Dosya bulunamazsa hata vermemesi için boş bırakıyoruz
     bg_image_url = ""
 
-# --- 3. Özel CSS ile Tıklama Sorunlarını Çözme ve Tema Enjeksiyonu ---
+# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran, Menü Gizleme ve Panel Sabitleme ---
 custom_css = """
 <style>
-/* Üst kısımdaki gizli header'ın tıklamaları engellememesi için pointer-events: none yapıyoruz (Görünmez camı kaldırır) */
-header { 
-    background-color: transparent !important; 
-    pointer-events: none !important; 
-}
+/* Sağ üstteki 'Share' menüsünü, header'ı ve footer'ı tamamen gizleme */
+#MainMenu {visibility: hidden;}
+header {visibility: hidden; height: 0px !important;}
+footer {visibility: hidden;}
 
-/* Sağ üstteki gereksiz Streamlit menülerini tamamen kaldırıyoruz */
-[data-testid="stToolbar"], [data-testid="stActionElements"] { 
-    display: none !important; 
-}
-
-/* YAN PANEL AÇMA/KAPAMA BUTONUNU VURGULAMA VE TIKLANABİLİR YAPMA */
-[data-testid="collapsedControl"], 
-[data-testid="stSidebarCollapseButton"] {
-    display: inline-flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important; /* Butonun tıklanmasını garanti altına alır */
-    background-color: rgba(139, 0, 0, 0.9) !important; /* Bordo Arka Plan */
-    border-radius: 6px !important;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.3) !important;
-    transition: all 0.3s ease !important;
-    z-index: 999999 !important; /* Her şeyin üstünde durmasını sağlar */
-}
-
-/* Fare üzerine geldiğinde rengi koyulaşsın */
-[data-testid="collapsedControl"]:hover, 
-[data-testid="stSidebarCollapseButton"]:hover {
-    background-color: rgba(139, 0, 0, 1) !important;
-}
-
-/* Butonun içindeki ok ikonunu beyaz yapıyoruz */
-[data-testid="collapsedControl"] svg, 
-[data-testid="stSidebarCollapseButton"] svg {
-    fill: white !important;
-    color: white !important;
-}
-
-/* Yan panel (Sidebar) tıklanabilirliğini garanti etme */
-[data-testid="stSidebar"] {
-    pointer-events: auto !important;
-    background-color: rgba(244, 236, 216, 0.95) !important;
-    border-right: 2px solid #D3C6A6 !important;
+/* Yan paneli kapatma (ok) tuşunu ve 'keyboard_double' yazısını KESİN olarak gizleme */
+[data-testid="collapsedControl"],
+[data-testid="stSidebarCollapseButton"],
+button[kind="header"] {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    z-index: -9999 !important;
 }
 
 /* Ana arka plan ve YEREL Piri Reis Haritası Filigranı */
@@ -74,6 +50,14 @@ header {
     background-attachment: fixed;
 }
 
+/* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz ve genişliği sabitliyoruz */
+[data-testid="stSidebar"] {
+    background-color: rgba(244, 236, 216, 0.95) !important;
+    border-right: 2px solid #D3C6A6 !important;
+    min-width: 320px !important;
+    max-width: 320px !important; 
+}
+
 /* Genel metin stili */
 html, body, p, span, div, li {
     font-family: 'Georgia', serif !important;
@@ -81,6 +65,7 @@ html, body, p, span, div, li {
 }
 </style>
 """
+# Hazırladığımız yerel base64 görselini CSS kodunun içine yerleştiriyoruz
 custom_css = custom_css.replace("BG_IMAGE_URL_PLACEHOLDER", bg_image_url)
 st.markdown(custom_css, unsafe_allow_html=True)
 
@@ -147,44 +132,12 @@ if not mapping:
     st.error("kelime.txt parse edilemedi veya uygun satır yok.")
     st.stop()
 
-# --- 5. Eşleştirme ve Çeviri Sözlükleri ---
+# --- basit Türkçe -> İngilizce ülke eşleme ---
 tur_to_eng = {
     "türkiye": "Turkey", "almanya": "Germany", "fransa": "France",
     "italya": "Italy", "ispanya": "Spain", "ingiltere": "United Kingdom",
     "çin": "China", "hindistan": "India", "brezilya": "Brazil", "meksika": "Mexico",
     "japonya": "Japan", "rusya": "Russia", "kanada": "Canada", "avustralya": "Australia"
-}
-
-iso_to_tur = {
-    "TUR": "Türkiye", "DEU": "Almanya", "FRA": "Fransa", "ITA": "İtalya",
-    "ESP": "İspanya", "GBR": "İngiltere", "CHN": "Çin", "IND": "Hindistan",
-    "BRA": "Brezilya", "MEX": "Meksika", "JPN": "Japonya", "RUS": "Rusya",
-    "CAN": "Kanada", "AUS": "Avustralya", "IRN": "İran", "ARM": "Ermenistan",
-    "HUN": "Macaristan", "SRB": "Sırbistan", "MKD": "Kuzey Makedonya",
-    "ALB": "Arnavutluk", "GRC": "Yunanistan", "BGR": "Bulgaristan",
-    "GEO": "Gürcistan", "AZE": "Azerbaycan", "SYR": "Suriye", "IRQ": "Irak",
-    "USA": "ABD", "UKR": "Ukrayna", "ROU": "Romanya", "BIH": "Bosna-Hersek",
-    "HRV": "Hırvatistan", "KAZ": "Kazakistan", "UZB": "Özbekistan",
-    "TKM": "Türkmenistan", "KGZ": "Kırgızistan", "TJK": "Tacikistan",
-    "AFG": "Afganistan", "PAK": "Pakistan", "EGY": "Mısır", "SAU": "Suudi Arabistan",
-    "SWE": "İsveç", "NOR": "Norveç", "FIN": "Finlandiya", "DNK": "Danimarka",
-    "NLD": "Hollanda", "BEL": "Belçika", "CHE": "İsviçre", "AUT": "Avusturya",
-    "POL": "Polonya", "CZE": "Çekya", "SVK": "Slovakya", "IRL": "İrlanda",
-    "PRT": "Portekiz", "ZAF": "Güney Afrika", "KOR": "Güney Kore", "PRK": "Kuzey Kore",
-    "TWN": "Tayvan", "CUB": "Küba", "ARG": "Arjantin", "CHL": "Şili",
-    "COL": "Kolombiya", "VEN": "Venezuela", "PER": "Peru", "NZL": "Yeni Zelanda",
-    "ISR": "İsrail", "LBN": "Lübnan", "JOR": "Ürdün", "ARE": "Birleşik Arap Emirlikleri", 
-    "QAT": "Katar", "KWT": "Kuveyt", "OMN": "Umman", "YEM": "Yemen", "MAR": "Fas", 
-    "DZA": "Cezayir", "TUN": "Tunus", "LBY": "Libya", "SDN": "Sudan", "SOM": "Somali", 
-    "ETH": "Etiyopya", "KEN": "Kenya", "NGA": "Nijerya", "GHA": "Gana", 
-    "SEN": "Senegal", "MLI": "Mali", "MYS": "Malezya", "IDN": "Endonezya", 
-    "THA": "Tayland", "VNM": "Vietnam", "PHL": "Filipinler", "SGP": "Singapur", 
-    "BGD": "Bangladeş", "LKA": "Sri Lanka", "NPL": "Nepal", "MMR": "Myanmar", 
-    "KHM": "Kamboçya", "LAO": "Laos", "MNG": "Moğolistan", "BLR": "Belarus", 
-    "MDA": "Moldova", "LTU": "Litvanya", "LVA": "Letonya", "EST": "Estonya", 
-    "ISL": "İzlanda", "CYP": "Kıbrıs", "MLT": "Malta", "MCO": "Monako", 
-    "SMR": "San Marino", "VAT": "Vatikan", "AND": "Andorra", "LIE": "Lihtenştayn", 
-    "LUX": "Lüksemburg", "KOS": "Kosova", "MNE": "Karadağ"
 }
 
 def name_to_iso3(name: str):
@@ -216,9 +169,8 @@ def name_to_iso3(name: str):
 # --- UI ve Tema Ayarları ---
 st.sidebar.markdown("<h2 style='color: #8B0000; margin-top: 0;'>Ayarlar</h2>", unsafe_allow_html=True)
 
-# Kelime seçme kutusu doğrudan panele yerleştirildi
 words = sorted(mapping.keys(), key=lambda s: s.lower())
-selected = st.sidebar.selectbox("Listeden bir kelime seçin:", words)
+selected = st.sidebar.selectbox("Bir kelime seçin", words)
 
 highlight_color = st.sidebar.color_picker("Vurgulama rengi", "#8B0000") 
 show_markers = st.sidebar.checkbox("Ülke işaretçileri göster", value=True)
@@ -238,34 +190,27 @@ entries = mapping.get(selected, [])
 iso_list = []
 hover_texts = []
 unrecognized = []
-
 for e in entries:
     country_raw = e.get("country")
     local = e.get("local")
-    
-    # ISO kodunu bul
     iso = name_to_iso3(country_raw)
-    if not iso:
-        eng = tur_to_eng.get(country_raw.lower())
-        if eng:
-            iso = name_to_iso3(eng)
-            
-    # Ekranda gösterilecek Türkçe adı belirle
-    display_name = country_raw
-    if iso and iso in iso_to_tur:
-        display_name = iso_to_tur[iso]
-    elif country_raw.lower() in tur_to_eng:
-        display_name = country_raw.title()
-        
-    e["display_name"] = display_name 
-    
     if iso:
         iso_list.append(iso)
         if local:
-            hover_texts.append(f"{display_name}\nYerel karşılık: {local}")
+            hover_texts.append(f"{country_raw}\nYerel karşılık: {local}")
         else:
-            hover_texts.append(f"{display_name}")
+            hover_texts.append(f"{country_raw}")
     else:
+        eng = tur_to_eng.get(country_raw.lower())
+        if eng:
+            iso2 = name_to_iso3(eng)
+            if iso2:
+                iso_list.append(iso2)
+                if local:
+                    hover_texts.append(f"{country_raw}\nYerel karşılık: {local}")
+                else:
+                    hover_texts.append(f"{country_raw}")
+                continue
         unrecognized.append(country_raw)
 
 # --- tüm dünya ISO-3 listesi ---
@@ -339,12 +284,12 @@ with col2:
     st.write(f"**{selected}**")
     st.markdown("<h3 style='color:#8B0000;'>Ülkeler ve Yerel Karşılık</h3>", unsafe_allow_html=True)
     for e in entries:
-        display_name = e.get("display_name", e.get("country"))
+        country_raw = e.get("country")
         local = e.get("local")
         if local:
-            st.write(f"- **{display_name}** — *{local}*")
+            st.write(f"- **{country_raw}** — *{local}*")
         else:
-            st.write(f"- **{display_name}**")
+            st.write(f"- **{country_raw}**")
     if unrecognized:
         st.markdown("<h3 style='color:#8B0000;'>Tanınmayan Ülke İsimleri</h3>", unsafe_allow_html=True)
         for u in unrecognized:
