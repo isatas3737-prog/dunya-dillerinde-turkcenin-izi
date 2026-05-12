@@ -20,26 +20,46 @@ else:
     # Dosya bulunamazsa hata vermemesi için boş bırakıyoruz
     bg_image_url = ""
 
-# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran, Menü Gizleme, Panel Sabitleme ve MOBİL UYUMLULUK ---
+# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran, Açılır/Kapanır Buton ve Mobil Uyumluluk ---
 custom_css = """
 <style>
-/* Sağ üstteki 'Share' menüsünü, header'ı ve footer'ı tamamen gizleme */
+/* Sağ üstteki 'Share' menüsünü ve footer'ı tamamen gizleme */
 #MainMenu {visibility: hidden;}
-header {visibility: hidden; height: 0px !important;}
 footer {visibility: hidden;}
 
-/* MASAÜSTÜ: Yan paneli kapatma (ok) tuşunu ve 'keyboard_double' yazısını KESİN olarak gizleme */
+/* Üst kısımdaki gizli header'ın tıklamaları engellememesi için şeffaf ve etkileşimsiz yapıyoruz */
+header { 
+    background-color: transparent !important; 
+    pointer-events: none !important; 
+}
+
+/* Gereksiz Streamlit menülerini kaldırıyoruz */
+[data-testid="stToolbar"], [data-testid="stActionElements"] { 
+    display: none !important; 
+}
+
+/* YAN PANEL AÇMA VE KAPAMA BUTONLARINI GÖRÜNÜR, VURGULU VE TIKLANABİLİR YAPMA */
 [data-testid="collapsedControl"],
-[data-testid="stSidebarCollapseButton"],
-button[kind="header"] {
-    display: none !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-    position: absolute !important;
-    z-index: -9999 !important;
+[data-testid="stSidebarCollapseButton"] {
+    pointer-events: auto !important; /* Şeffaf header'ın altından tıklanabilmesi için zorunlu */
+    background-color: rgba(139, 0, 0, 0.85) !important; /* Bordo Arka Plan */
+    border-radius: 6px !important;
+    margin: 5px !important;
+    transition: all 0.3s ease !important;
+    z-index: 99999 !important;
+}
+
+/* Fare üzerine geldiğinde butonun rengi koyulaşsın */
+[data-testid="collapsedControl"]:hover,
+[data-testid="stSidebarCollapseButton"]:hover {
+    background-color: rgba(139, 0, 0, 1) !important;
+}
+
+/* Butonun içindeki ok ikonunu beyaz yapıyoruz */
+[data-testid="collapsedControl"] svg,
+[data-testid="stSidebarCollapseButton"] svg {
+    fill: white !important;
+    color: white !important;
 }
 
 /* Ana arka plan ve YEREL Piri Reis Haritası Filigranı */
@@ -50,10 +70,11 @@ button[kind="header"] {
     background-attachment: fixed;
 }
 
-/* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz ve genişliği sabitliyoruz */
+/* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz ve tıklamaları engellememesi için auto yapıyoruz */
 [data-testid="stSidebar"] {
     background-color: rgba(244, 236, 216, 0.95) !important;
     border-right: 2px solid #D3C6A6 !important;
+    pointer-events: auto !important;
     min-width: 320px !important;
     max-width: 320px !important; 
 }
@@ -66,45 +87,22 @@ html, body, p, span, div, li {
 
 /* --- MOBİL UYUMLULUK (RESPONSIVE) AYARLARI --- */
 @media (max-width: 768px) {
-    /* Mobilde yan panelin tüm ekranı kaplaması ve esnek olması için */
+    /* Mobilde yan panelin tüm ekranı kaplaması için */
     [data-testid="stSidebar"] {
         min-width: 100% !important;
         max-width: 100% !important; 
     }
     
-    /* Mobilde başlık boyutlarını küçültüyoruz ki ekrana sığsın */
+    /* Mobilde başlık boyutlarını ekrana sığması için küçültüyoruz */
     h1 {
         font-size: 1.6rem !important;
         line-height: 1.3 !important;
     }
     
-    /* Mobilde Türk bayrağı boyutunu küçültüyoruz */
+    /* Mobilde Türk bayrağı boyutunu orantılı küçültüyoruz */
     h1 img {
         width: 35px !important;
         margin-right: 10px !important;
-    }
-    
-    /* Mobilde mecburen menü açma/kapama (ok) tuşunu GÖRÜNÜR yapıyoruz */
-    [data-testid="collapsedControl"],
-    [data-testid="stSidebarCollapseButton"] {
-        display: inline-flex !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        visibility: visible !important;
-        width: auto !important;
-        height: auto !important;
-        position: relative !important;
-        background-color: rgba(139, 0, 0, 0.85) !important; /* Bordo Arka Plan */
-        border-radius: 6px !important;
-        margin: 10px !important;
-        z-index: 99999 !important;
-    }
-    
-    /* Mobildeki butonun ikonunu beyaz yapıyoruz */
-    [data-testid="collapsedControl"] svg,
-    [data-testid="stSidebarCollapseButton"] svg {
-        fill: white !important;
-        color: white !important;
     }
 }
 </style>
