@@ -6,24 +6,44 @@ import os
 # --- 1. Sayfa Ayarları ve Başlık ---
 st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi")
 
-# --- 2. Özel CSS ile Tarihi ve Kültürel Tema Enjeksiyonu ---
+# --- 2. Özel CSS ile Tarihi Tema, Filigran ve Menü Gizleme ---
 custom_css = """
 <style>
-/* Ana arka plan (Eskitilmiş kağıt / parşömen rengi ve dokusu) */
+/* Sağ üstteki 'Share' menüsünü, header'ı ve footer'ı tamamen gizleme */
+#MainMenu {visibility: hidden;}
+header {visibility: hidden;}
+footer {visibility: hidden;}
+
+/* Ana arka plan rengi */
 .stApp {
     background-color: #FDF6E3;
-    background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png");
 }
 
-/* Başlık renkleri ve fontu (Klasik serif ve Bordo tonları) */
+/* Piri Reis Haritası Filigranı */
+.stApp::before {
+    content: "";
+    position: fixed; /* Kaydırmalarda haritanın sabit kalması için */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Piri_reis_world_map_01.jpg/1024px-Piri_reis_world_map_01.jpg");
+    background-size: cover;
+    background-position: center center;
+    opacity: 0.12; /* Metinlerin okunurluğunu bozmamak için şeffaflık seviyesi */
+    z-index: -1; /* En arka planda kalmasını sağlar */
+    pointer-events: none;
+}
+
+/* Başlık renkleri ve fontu */
 h1, h2, h3, h4, h5, h6 {
     color: #8B0000 !important;
     font-family: 'Georgia', serif !important;
 }
 
-/* Yan panel (Sidebar) arka planı */
+/* Yan panel (Sidebar) arka planını hafif yarı saydam yapıyoruz */
 [data-testid="stSidebar"] {
-    background-color: #F4ECD8;
+    background-color: rgba(244, 236, 216, 0.90);
     border-right: 2px solid #D3C6A6;
 }
 
@@ -36,7 +56,7 @@ html, body, p, span, div, li {
 """
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# Başlık ve Simge Güncellemesi
+# Başlık (TR yerine Türk Bayrağı Emojisi eklendi)
 st.title("🇹🇷 Dünya Dillerinde Türkçenin İzi")
 
 # --- kelime.txt oku ---
@@ -51,13 +71,11 @@ with open(path, "r", encoding="utf-8-sig") as f:
 
 # --- esnek parse fonksiyonu ---
 def parse_text(text: str):
-    # mapping: kelime -> list of entries {country_raw, local}
     mapping = {}
     for line in text.splitlines():
         line = line.strip()
         if not line or line.startswith("#"):
             continue
-        # iki ana durum: "kelime,rest" veya "kelime rest" (virgül beklenir)
         if "," in line:
             key, rest = line.split(",", 1)
         elif ":" in line:
@@ -65,11 +83,9 @@ def parse_text(text: str):
         else:
             continue
         key = key.strip()
-        # rest içinde birden çok ülke entry'si ; ile ayrılmış olabilir
         parts = [p.strip() for p in rest.split(";") if p.strip()]
         entries = []
         for p in parts:
-            # p örnekleri: "Country|local", "Country,local", "Country:local", "Country"
             country = None
             local = None
             if "|" in p:
@@ -85,7 +101,6 @@ def parse_text(text: str):
             if country:
                 entries.append({"country": country, "local": local})
         if entries:
-            # eğer aynı kelime birden fazla satırda varsa ekle
             if key in mapping:
                 mapping[key].extend(entries)
             else:
@@ -109,7 +124,6 @@ def name_to_iso3(name: str):
     if not name:
         return None
     nm = name.strip()
-    # önce tur->eng sözlüğü ile dene
     eng = tur_to_eng.get(nm.lower())
     candidates = [eng] if eng else []
     candidates.append(nm)
@@ -122,7 +136,6 @@ def name_to_iso3(name: str):
                 return c.alpha_3
         except Exception:
             pass
-    # esnek arama
     for cand in candidates:
         for c in pycountry.countries:
             if c.name.lower() == cand.lower():
@@ -138,9 +151,7 @@ st.sidebar.header("Ayarlar")
 words = sorted(mapping.keys(), key=lambda s: s.lower())
 selected = st.sidebar.selectbox("Bir kelime seçin", words)
 
-# Varsayılan rengi projeye uygun bir Bordo tonu ile değiştirdik
 highlight_color = st.sidebar.color_picker("Vurgulama rengi", "#8B0000") 
-# Harita zeminini parşömen rengiyle uyumlu hale getirdik
 base_color = "#EAE0C8" 
 show_markers = st.sidebar.checkbox("Ülke işaretçileri göster", value=True)
 
@@ -160,7 +171,6 @@ for e in entries:
         else:
             hover_texts.append(f"{country_raw}")
     else:
-        # tur->eng dene
         eng = tur_to_eng.get(country_raw.lower())
         if eng:
             iso2 = name_to_iso3(eng)
@@ -186,7 +196,7 @@ fig.add_trace(go.Choropleth(
     locationmode="ISO-3",
     colorscale=[[0, base_color], [1, base_color]],
     showscale=False,
-    marker_line_color="rgba(139, 0, 0, 0.2)", # Çizgileri hafif bordo tonuna çektik
+    marker_line_color="rgba(139, 0, 0, 0.2)",
     marker_line_width=0.3,
     hoverinfo="none",
     name="world"
@@ -227,7 +237,7 @@ fig.update_layout(
         showcoastlines=True, 
         coastlinecolor="rgba(139,0,0,0.3)",
         projection_type="natural earth",
-        bgcolor="rgba(0,0,0,0)" # Arka planı şeffaf yaparak sayfa dokusunun görünmesini sağladık
+        bgcolor="rgba(0,0,0,0)" 
     ),
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
