@@ -140,6 +140,21 @@ tur_to_eng = {
     "japonya": "Japan", "rusya": "Russia", "kanada": "Canada", "avustralya": "Australia"
 }
 
+# --- Sağ Sütunda Görüntüleme İçin İngilizce -> Türkçe Sözlük ---
+eng_to_tur_display = {
+    "Turkey": "Türkiye", "Germany": "Almanya", "France": "Fransa", "Italy": "İtalya",
+    "Spain": "İspanya", "United Kingdom": "İngiltere", "China": "Çin", "India": "Hindistan",
+    "Brazil": "Brezilya", "Mexico": "Meksika", "Japan": "Japonya", "Russia": "Rusya",
+    "Russian Federation": "Rusya", "Canada": "Kanada", "Australia": "Avustralya",
+    "Iran": "İran", "Armenia": "Ermenistan", "Hungary": "Macaristan", "Serbia": "Sırbistan",
+    "North Macedonia": "Kuzey Makedonya", "Albania": "Arnavutluk", "Greece": "Yunanistan",
+    "Bulgaria": "Bulgaristan", "Georgia": "Gürcistan", "Azerbaijan": "Azerbaycan",
+    "Syria": "Suriye", "Iraq": "Irak", "United States": "ABD", "USA": "ABD", 
+    "Ukraine": "Ukrayna", "Romania": "Romanya", "Bosnia and Herzegovina": "Bosna-Hersek", 
+    "Croatia": "Hırvatistan", "Kazakhstan": "Kazakistan", "Uzbekistan": "Özbekistan", 
+    "Turkmenistan": "Türkmenistan", "Kyrgyzstan": "Kırgızistan", "Tajikistan": "Tacikistan"
+}
+
 def name_to_iso3(name: str):
     if not name:
         return None
@@ -286,10 +301,14 @@ with col2:
     for e in entries:
         country_raw = e.get("country")
         local = e.get("local")
+        
+        # Ülke adını sağ sütunda göstermek için Türkçeye çeviriyoruz
+        display_country = eng_to_tur_display.get(country_raw, country_raw)
+        
         if local:
-            st.write(f"- **{country_raw}** — *{local}*")
+            st.write(f"- **{display_country}** — *{local}*")
         else:
-            st.write(f"- **{country_raw}**")
+            st.write(f"- **{display_country}**")
     if unrecognized:
         st.markdown("<h3 style='color:#8B0000;'>Tanınmayan Ülke İsimleri</h3>", unsafe_allow_html=True)
         for u in unrecognized:
