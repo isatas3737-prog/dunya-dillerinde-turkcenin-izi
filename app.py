@@ -2,39 +2,60 @@ import streamlit as st
 import pycountry
 import plotly.graph_objects as go
 import os
+import base64 # Yerel görseli CSS içine gömmek için gerekli kütüphane
 
 # --- 1. Sayfa Ayarları ve Başlık ---
-# initial_sidebar_state="expanded" ile yan panelin her zaman açık başlamasını sağlıyoruz
 st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi", initial_sidebar_state="expanded")
 
-# --- 2. Özel CSS ile Tarihi Tema, Filigran, Menü Gizleme ve Panel Sabitleme ---
+# --- 2. Yerel Arka Plan Görselini Hazırlama (Base64) ---
+cwd = os.getcwd()
+bg_image_path = os.path.join(cwd, "arkaplan.jpg")
+
+# Eğer arkaplan.jpg varsa onu oku ve base64'e çevir, yoksa boş veya varsayılan bir renk bırak
+if os.path.exists(bg_image_path):
+    with open(bg_image_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+    bg_image_url = f"data:image/jpeg;base64,{encoded_string}"
+else:
+    # Dosya bulunamazsa hata vermemesi için boş bırakıyoruz
+    bg_image_url = ""
+
+# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran, Menü Gizleme ve Panel Sabitleme ---
 custom_css = """
 <style>
 /* Sağ üstteki 'Share' menüsünü, header'ı ve footer'ı tamamen gizleme */
 #MainMenu {visibility: hidden;}
-header {visibility: hidden;}
+header {visibility: hidden; height: 0px !important;}
 footer {visibility: hidden;}
 
-/* Yan paneli kapatma (ok) tuşunu KESİN olarak gizleyerek paneli sürekli açık sabitleme */
-[data-testid="collapsedControl"] {
+/* Yan paneli kapatma (ok) tuşunu ve 'keyboard_double' yazısını KESİN olarak gizleme */
+[data-testid="collapsedControl"],
+[data-testid="stSidebarCollapseButton"],
+button[kind="header"] {
     display: none !important;
     opacity: 0 !important;
     pointer-events: none !important;
     visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    z-index: -9999 !important;
 }
 
-/* Ana arka plan ve Piri Reis Haritası Filigranı */
+/* Ana arka plan ve YEREL Piri Reis Haritası Filigranı */
 [data-testid="stAppViewContainer"] {
-    background-image: linear-gradient(rgba(253, 246, 227, 0.88), rgba(253, 246, 227, 0.88)), url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Piri_reis_world_map_01.jpg/1024px-Piri_reis_world_map_01.jpg");
+    background-image: linear-gradient(rgba(253, 246, 227, 0.88), rgba(253, 246, 227, 0.88)), url("BG_IMAGE_URL_PLACEHOLDER");
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
 }
 
-/* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz */
+/* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz ve genişliği sabitliyoruz */
 [data-testid="stSidebar"] {
-    background-color: rgba(244, 236, 216, 0.95);
-    border-right: 2px solid #D3C6A6;
+    background-color: rgba(244, 236, 216, 0.95) !important;
+    border-right: 2px solid #D3C6A6 !important;
+    min-width: 320px !important;
+    max-width: 320px !important; 
 }
 
 /* Genel metin stili */
@@ -44,9 +65,11 @@ html, body, p, span, div, li {
 }
 </style>
 """
+# Hazırladığımız yerel base64 görselini CSS kodunun içine yerleştiriyoruz
+custom_css = custom_css.replace("BG_IMAGE_URL_PLACEHOLDER", bg_image_url)
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# --- 3. Başlık (TR yazısı yerine HTML ile gerçek Türk Bayrağı resmi eklendi) ---
+# --- 4. Başlık (HTML ile gerçek Türk Bayrağı resmi eklendi) ---
 st.markdown(
     """
     <h1 style="display: flex; align-items: center; color: #8B0000; font-family: 'Georgia', serif; font-size: 2.5rem; margin-bottom: 20px;">
@@ -58,13 +81,12 @@ st.markdown(
 )
 
 # --- kelime.txt oku ---
-cwd = os.getcwd()
-path = os.path.join(cwd, "kelime.txt")
-if not os.path.exists(path):
+words_path = os.path.join(cwd, "kelime.txt")
+if not os.path.exists(words_path):
     st.error("kelime.txt bulunamadı. Lütfen app.py ile aynı klasöre koyun.")
     st.stop()
 
-with open(path, "r", encoding="utf-8-sig") as f:
+with open(words_path, "r", encoding="utf-8-sig") as f:
     raw = f.read()
 
 # --- esnek parse fonksiyonu ---
@@ -145,7 +167,6 @@ def name_to_iso3(name: str):
     return None
 
 # --- UI ve Tema Ayarları ---
-# Yan panel başlığı da projeye uyumlu olacak şekilde Bordo yapıldı
 st.sidebar.markdown("<h2 style='color: #8B0000; margin-top: 0;'>Ayarlar</h2>", unsafe_allow_html=True)
 
 words = sorted(mapping.keys(), key=lambda s: s.lower())
@@ -160,9 +181,7 @@ st.sidebar.markdown("**Okul:** Yahya Turan Fen Lisesi")
 st.sidebar.markdown("**Danışman Öğretmen:** İsa TAŞ")
 st.sidebar.markdown("**Öğrenciler:** <br>Meryem Rana GÖÇMEZ <br>Mehmet AÇIKGÖZ <br>Eylül ÖZELKARA", unsafe_allow_html=True)
 
-# Boşluk bırakıp en alta "Sistem Aktif" yazısını ekliyoruz
 st.sidebar.markdown("<br><br><br><div style='color: #2e8b57; font-weight: bold; font-family: sans-serif; font-size: 14px;'>Sistem Aktif 🟢</div>", unsafe_allow_html=True)
-
 
 base_color = "#EAE0C8" 
 
