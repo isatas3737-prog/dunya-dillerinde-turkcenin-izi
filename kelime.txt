@@ -1,10 +1,10 @@
 abla, Türkiye, abla
 abla, Iran, abaci
-abla, Russian Federation, apayka
+abla, Russia, apayka
 abla, Armenia, abla
 abla, Hungary, bula
 abla, Serbia, bula
-abla, North North Macedonia, bula
+abla, North Macedonia, bula
 abla, Albania, bulle
 abla, Greece, abula
 
@@ -13,7 +13,7 @@ acı, Armenia, acı
 acı, Bulgaria, acemak
 acı, Serbia, adzja
 acı, Albania, axdis
-acı, North North Macedonia, ajiya
+acı, North Macedonia, ajiya
 
 açık, Türkiye, açık
 açık, Iran, açiğ
@@ -24,7 +24,7 @@ açık, Romania, acic
 açık, Bulgaria, açik
 açık, Serbia, acik
 açık, Albania, açik
-açık, North North Macedonia, açik
+açık, North Macedonia, açik
 açık, Greece, açih
 
 açıkgöz, Türkiye, açıkgöz
@@ -34,27 +34,34 @@ açıkgöz, Greece, açigközis
 
 ada, Türkiye, ada
 ada, Iran, aral
-ada, Russian Federation, alar
+ada, Russia, alar
 ada, Armenia, ada
 ada, Romania, adaliü
 ada, Bulgaria, ada
 ada, Serbia, ada
 ada, Albania, hade
-ada, North North Macedonia, ada
+ada, North Macedonia, ada
 
 adım, Türkiye, adım
 adım, Armenia, adim
 adım, Bulgaria, adim
 adım, Albania, adım
-adım, North North Macedonia, adim
+adım, North Macedonia, adim
 adım, Greece, adimi
+
+afacan, Türkiye, afacan
+afacan, Bulgaria, afacan
+
+ağ, Türkiye, ağ
+ağ, Armemia, ag
+ağ, North Macedonia, aaları
 
 ağa, Türkiye, ağa
 ağa, China, aha
 ağa, Iran, aka
 ağa, Saudi Arabia, aga
-ağa, Russian Federation, aga
-ağa, Armenia, ağa
+ağa, Russia, aga
+ağa, Armenia, aga
 ağa, Hungary, aga
 ağa, Romania, aga
 ağa, Bulgaria, aga
@@ -68,27 +75,80 @@ ağa, United Kingdom, agha
 
 ağaç, Türkiye, ağaç
 ağaç, Saudi Arabia, akagac
-ağaç, Russian Federation, agaç
+ağaç, Russia, agaç
 ağaç, Armenia, agaç
 ağaç, Hungary, acs
 ağaç, Serbia, kraljagac
 ağaç, Greece, agasluh
 
+ağır, Türkiye, ağır
+ağır, Saudi Arabia, agir
+ağır, Bulgaria, agir
+ağır, Serbia, agar
+ağır, North Macedonia, aar
+
+ak, Türkiye, ak
+ak, Iran, ak
+ak, Pakistan, akı
+ak, Russia, ak
+ak, Armenia, ak
+ak, Bulgaria, ahçak
+ak, Albania, akllek
+ak, North Macedonia, ak
+
+akçe, Türkiye, akçe
+akçe, Iran, akça
+akçe, Pakistan, akça
+akçe, Saudi Arabia, akça
+akçe, Russia, akça
+akçe, Armenia, akça
+akça, Hungary, akcsa
+akça, Romania, accea
+akça, Bulgaria, akçe
+akça, Czech Republic, akce
+akça, Serbia, akca
+akça, North Macedonia, akça
+
+al, Türkiye, al
+al, Iran, hula
+al, Russia, alıy
+al, Saudi Arabia, al
+al, Armenia, al
+al, Bulgaria, al
+al, Serbia, al
+al, Albania, all
+al, North Macedonia, al
+al, Greece, alin
+
+alaca, Türkiye, alaca
+alaca, Iran, alaça
+alaca, Saudi Arabia, alaca
+alaca, Russia, aladja
+alaca, Armenia, alaca
+alaca, Hungary, alacs
+alaca, Romania, alaci
+alaca, Bulgaria, alaca
+alaca, Serbia, aladza
+alaca, Albania, allaxha
+alaca, North Macedonia, alaca
+alaca, Greece, alaças
+alaca, United Kingdom, elatcha
+
 araba, Türkiye, araba
 araba, Iran, araba
 araba, Saudi Arabia, araba
-araba, Russian Federation, arba
+araba, Russia, arba
 araba, Armenia, araba
 araba, Romania, srsbs
 araba, Bulgaria, araba
 araba, Albania, araba
-araba, North North Macedonia, araba
+araba, North Macedonia, araba
 araba, Greece, arabas
 
 baba, Türkiye, baba
 baba, Iran, baba
 baba, Saudi Arabia, baba
-baba, Russian Federation, baba
+baba, Russia, baba
 baba, Armenia, baba
 baba, Hungary, baba
 baba, Finland, paapo
@@ -96,37 +156,46 @@ baba, Romania, baba
 baba, Bulgaria, baba
 baba, Serbia, baba
 baba, Albania, baba
-baba, North Macedonia, babalok
+baba, Macedonia, babalok
 
 bacak, Türkiye, bacak
 bacak, Saudi Arabia, bacag
 bacak, Armenia, bacak
 bacak, Bulgaria, bacak
 bacak, Serbia, badzag
-bacak, North Macedonia, bacak
+bacak, Macedonia, bacak
 bacak, Greece, bacaki
 
 bacanak, Türkiye, bacanak
 bacanak, Iran, bacanak
 bacanak, Saudi Arabia, bacanak
-bacanak, Russian Federation, bacınak
-bacak, Armenia, bacanak
+bacanak, Russia, bacınak
+bacanak, Armenia, bacanak
 bacanak, Bulgaria, bacanak
 bacanak, Serbia, badzanak
 bacanak, Albania, baxhanak
-bacanak, North Macedonia, bacanak
+bacanak, Macedonia, bacanak
 bacanak, Greece, bacanakis
+
+bacı, Türkiye, bacı
+bacı, Iran, abaci
+bacı, Pakistan, baci
+bacı, Saudi Arabia, baci
+bacı, Hungary, batya
+bacı, Romania, bacı
+bacı, Serbia, bazda
+bacı, Albania, baxhi
 
 baklava, Türkiye, baklava
 baklava, Iran, bakleva
 baklava, Albania, baklava
-baklava, Russian Federation, pahlava
+baklava, Russia, pahlava
 baklava, Armenia, paklava
 baklava, Romania, baclava
 baklava, Bulgaria, baklava
 baklava, Serbia, baklava
 baklava, Albania, baklava
-baklava, North Macedonia, baklava
+baklava, Macedonia, baklava
 baklava, Greece, baklavas
 baklava, United Kingdom, baklava
 
@@ -134,7 +203,7 @@ baş, Türkiye, baş
 baş, China, basi
 baş, Iran, başi
 baş, Pakistan, baş
-baş, Russian Federation, baş
+baş, Russia, baş
 baş, Saudi Arabia, baş
 baş, Armenia, baş
 baş, Hungary, pas aga
@@ -142,7 +211,7 @@ baş, Romania, baş
 baş, Bulgaria, baş
 baş, Serbia, baş
 baş, Albania, bash
-baş, North Macedonia, baş
+baş, Macedonia, baş
 baş, Greece, basias
 
 bey, Türkiye, bey
@@ -150,7 +219,7 @@ bey, China, boke
 bey, Iran, bek
 bey, Pakistan, beg
 bey, Saudi Arabia, bag
-bey, Russian Federation, beg
+bey, Russia, beg
 bey, Armenia, beg
 bey, Hungary, beg
 bey, Romania, bei
@@ -159,15 +228,28 @@ bey, Bulgaria, beg
 bey, Serbia, beg
 bey, Italy, bei
 bey, Albania, bek
-bey, North Macedonia, beg
+bey, Macedonia, beg
 bey, Greece, beis
 bey, Germany ,bei
 bey, United Kingdom, bey
 
+bey armudu, Türkiye, bey armudu
+bey armudu, Iran, bergamut
+bey armudu, Saudi Arabia, bergamut
+bey armudu, Russia, bergamot
+bey armudu, Armenia, bergamot
+bey armudu, Romania, bey armodi
+bey armudu, Czech Republic, bergamotka
+bey armudu, Italy, bergamotta
+bey armudu, North Macedonia, begarma
+bey armudu, Germany, bergamotte
+bey armudu, France, bergamotte
+bey armudu, United Kingdom, bergamot
+
 bıçak, Türkiye, bıçak
 bıçak, Iran, biçak
 bıçak, Saudi Arabia, büçak
-bıçak, Russian Federation, biçak
+bıçak, Russia, biçak
 bıçak, Armenia, buçak
 bıçak, Hungary, bicsak
 bıçak, Romania, briceok
@@ -175,8 +257,8 @@ bıçak, Czech Republic, biciak
 bıçak, Bulgaria, biçak
 bıçak, Serbia, bicak
 bıçak, Italy, bizzaco
-bıçak, Albania, bixhak
-bıçak, North Macedonia, biçak
+bıçak, Albenia, bixhak
+bıçak, Macedonia, biçak
 bıçak, Greece, biçazis
 
 biçim, Türkiye, biçim
@@ -185,15 +267,1338 @@ biçim, Armenia, biçim
 biçim, Bulgaria, biçim
 biçim, Serbia, bicum
 biçim, Albania, biçim
-biçim, North Macedonia, biçim
+biçim, Macedonia, biçim
 biçim, Greece, biçimi
 biçim, Iran, beçin
 
 bilezik, Türkiye, bilezik
 bilezik, Iran, bilerzük
 bilezik, Albania, bilazik
-bilezik, Russian Federation, belezek
+bilezik, Russia, belezek
 bilezik, Armenia, bilezik
 bilezik, Hungary, bilines
 bilezik, Romania, belezic
 bielezik, Bulgaria, bilezik
+
+boş, Türkiye, boş
+boş, Iran, boş
+boş, Pakistan, böş
+boş, Saudi Arabia, buş
+boş, Armenia, boş
+boş, Romania, boş
+boş, Bulgaria, boş
+boş, Serbia, boş
+boş, Albania, bosh
+boş, Greece, bosikos
+boş, United Kingdom, bosh
+
+boya, Türkiye,boya
+boya, suudi arabia,buya
+boya, Rusian,şar
+boya, Armenia,boya
+boya, Romania,boiç
+boya, Bulgaria,boya
+boya, Serbia,boya
+boya, Albania,boje
+boya, North Macedonia,boya
+boya, Greece,boğia
+
+
+burun, Türkiye, burun
+burun, Suudi arbistan,burin
+burun, Rusian,burün
+burun, Armenia,burun
+burun, Bulgaria,burün
+burun, Serbia,burünsuz
+burun, Albania,burumli
+burun, North Macedonia,borun
+burun, Greece,burüni
+
+cacık, Türkiye, cacık
+cacık, Greece, caciki
+
+cebeci, Türkiye, cebeci
+cebeci, Iran, cebeçi
+cebeci, Saudi Arabia, cibaci
+cebeci, Hungary, csebezi
+cebeci, Romania, gebegiu
+cebeci, Serbia, dzebedzije
+cebeci, Greece, cebecıbasıs
+ 
+
+çakır, Türkiye, çakır
+çakır, Iran, çakir
+çakır, Russia, çihir
+çakır, Armenia, çakir
+çakır, Romania, ceacaer
+çakır, Czech Republic, cingir
+çakır, Bulgaria, çakir
+çakır, Serbia, cakar
+çakır, Albania, çaker
+çakır, North Macedonia, çakrgyozli
+çakır, Greece, çakkıris
+
+çalışkan, Türkiye, çalışkan
+çalışkan, Bulgaria, çalışmik
+çalışkan, Serbia, caliskin
+çalışkan, Greece, çaliskanis
+
+çekmece, Türkiye, çekmece
+çekmece, Saudi Arabia, çakmaça
+çekmece, Armenia, çekemece
+çekmece, Romania, cecmegea
+çekmece, Bulgaria, çekmece
+çekmece, Serbia, cekmedza
+çekmece, Albania, çekmexhe
+çekmece, North Macedonia, çekmece
+çekmece, Greece, çekemeces
+
+çiçek, Türkiye, çiçek
+çiçek, China, sa rilang
+çiçek, Iran, çeçek
+çiçek, Pakistan, çeçak
+çiçek, Armenia, çiçek
+çiçek, Hungary, çiçehi
+çiçek, Bulgaria, çiçek
+çiçek, Serbia, cicek
+çiçek, Albania, çiçek
+çiçek, North Macedonia, çiçek
+çiçek, Greece, çiçeki
+
+dalga, Türkiye, dalga
+dalga, Saudi Arabia, dalga
+dalga, Russia, toklun
+dalga, Armenia, dalga
+dalga, Romania, dalguri
+dalga, Bulgaria, dalga
+dalga, Albania, dallg
+dalga, North Macedonia, dalga
+dalga, Greece, dalkas
+dalga, Serbia, dalga
+
+dere, Türkiye, dere
+dere, Iran, dere 
+dere, Armenia, dere
+dere, Saudi Arabia, dara
+dere, Bulgaria, dere
+dere, Serbia, dera
+dere, North Macedonia, dere
+dere, Greece, deres
+
+dil, Türkiye, dil
+dil, Iran, dil
+dil, Saudi Arabia, dil
+dil, Armenia, dilsiz
+dil, Bulgaria, dil
+dil, Serbia, dil
+
+durak, Türkiye, durak
+durak, Russia, durak
+durak, Bulgaria, durak
+durak, Serbia, durak
+
+eğlence, Türkiye, eğlence
+eğlence, Armenia, eylenne
+eğlence, Romania, eglinge
+eğlence, Bulgaria, eglence
+eğlence, Serbia, eglen
+eğlence, Albenia, eglenxhe
+eğlence, Greece, eğlences
+
+elçi, Türkiye, elçi
+elçi, China, e'erqın
+elçi, Iran, ilçi
+elçi, Pakistan, elçi
+elçi, Saudi Arabia, ilçi
+elçi, Armenia, elçi
+elçi, Hungary, elcsi
+elçi, Romania, elciu
+elçi, Bulgaria, elçiya
+elçi, Serbia, elcija
+elçi, Albania, elçi
+elçi, North Macedonia, elçiya
+elçi, Greece, elçis
+
+emzik, Türkiye, emzik
+emzik, Iran, emzik
+emzik, Saudi Arabia, amzik
+emzik, Armenia, emzik
+emzik, Hungary, gyernek
+emzik, Bulgaria, emzik
+emzik, Serbia, enzek
+
+eski, Türkiye, eski
+eski, Iran, kekse
+eski, Saudi Arabia, aski
+eski, Armenia, esgi 
+eski, Bulgaria, eski
+eski, Serbia, eski
+eski, Greece, eskicis
+
+etek, Türkiye, etek
+etek, Armenia, etah
+etek, Saudi Arabia, atak
+etek, Serbia, etek
+etek, Albania, jetek
+
+gelin, Türkiye, gelin
+gelin, Iran, kelin
+gelin, Saudi Arabia, kalin
+gelin, Hungary, kelengye
+gelin, Finland, kaly
+gelin, Bulgaria, gelina
+gelin, Albania, gjeline
+gelin, North Macedonia, gelin
+gelin, Greece, gelini
+
+gemi, Türkiye, gemi
+gemi, Iran, keme
+gemi, Hungary, gemia
+gemi, Romania, ghimie
+gemi, Bulgaria, gemiya
+gemi, Serbia, demija
+gemi, Albania, gjemi
+gemi, North Macedonia, gemiya
+gemi, Greece, gemi
+
+geniş, Türkiye, geniş
+geniş, Bulgaria, geniş
+geniş, Albania, gjenish
+geniş, Greece, ğkeniskos
+geniş, Armenia, genz
+
+göç, Türkiye, göç
+göç, Iran, köç
+göç, Pakistan, küç
+göç, Russia, koçyevka
+göç, Armenia, göç
+göç, Romania, ghioci
+göç, Bulgaria, göç
+göç, Albania, göç
+göç, Greece, ğkiöçi
+
+gök, Türkiye, gök
+gök, Iran, kök
+gök, Pakistan, kokaha
+gök, Hungary, kek
+gök, Russia, kok-çay
+gök, Bulgaria, gökliya
+gök, Serbia, djoga
+gök, Albania, gjok
+
+göl, Türkiye, göl
+göl, Iran, köl
+göl, Pakistan, kul
+göl, Saudi Arabia, göli
+göl, Armenia, kyöl
+göl, Romania, ghiole
+göl, Bulgaria, göl
+göl, Serbia, dol
+göl, Albania, gjol
+göl, North Macedonia, gyöl
+göl, Greece, ğkioli
+
+göz, Türkiye, göz
+göz, Iran, güz
+göz, Bulgaria, göz
+göz, Serbia, töz
+göz, North Macedonia, gyözliya
+
+gülle, Türkiye, gülle
+gülle, Suadi Arabia, kulla
+gülle, Armenia, gürle
+gülle, Romania, giulea
+gülle, Bulgaria, gyulle
+gülle, Serbia, dünle
+gülle, Albania, gjyl
+gülle, North Macedonia, gule
+gülle, Greece, ğüles
+
+güveç, Türkiye, güveç
+güveç, Armenia, güvec
+güveç, Romania, ghiveci
+güveç, Bulgaria, gyuveç
+güveç, Serbia, duvec
+güveç, Albania, gjyveç
+güveç, North Macedonia, gyüveç
+güveç, Greece, güveçi
+
+güzel, Türkiye, güzel
+güzel, Saudi Arabia, gozal
+güzel, Hungary, giozel
+güzel, Bulgaria, gyuzel
+güzel, Serbia, duzel
+güzel, Albania, gjyzel
+güzel, North Macedonia, gyüzel
+güzel, Greece, guzelisa
+
+halı, Türkiye, halı
+halı, Iran, kalı
+halı, Pakistan, kaşım
+halı, Saudi Arabia, kali
+halı, Russia, kalim
+halı, Armenia, hali
+halı, Hungary, halina
+halı, Czech Republic, halena
+halı, Bulgaria, haliya
+halı, Serbia, halija
+halı, Albania, hali
+halı, Greece, hali
+
+han, Türkiye, han
+han, Iran, han
+han, Saudi Arabia, han
+han, Russia, han
+han, Armenia, han
+han, Hungary, han
+han, Romania, han
+han, Czech Republic, han
+han, Bulgaria, han
+han, Serbia, han
+han, Italy, khan
+han, Albania, hom
+han, North Macedonia, hon
+han, Greece, hani
+han, United Kingdom, khan
+
+han, Türkiye, han
+han, China, han
+han, Iran, hakan
+han, Pakistan, han
+han, Saudi Arabia, han
+han, Russia, han
+han, Hungary, kan
+han, Romania, han
+han, Czech Republic, chan
+han, Bulgaria, han
+han, Serbia, kan
+han, Italy, khan
+han, Germany, chan
+han, United Kingdom, khan
+
+hanım, Türkiye, hanım
+hanım, China, hailimü
+hanım, Iran, hanum
+hanım, Pakistan, hanam
+hanım, Saudi Arabia, hanim
+hanım, Armenia, hanum
+hanım, Hungary, hanem
+hanım, Romania, hanima
+hanım, Serbia, hanuma
+hanım, Albania, hanem
+hanım, North Macedonia, anema
+hanım, Greece, hanum
+hanım, United Kingdom, khanum
+
+hatun, Türkiye, hatun
+hatun, Iran, hatun
+hatun, Pakistan, hatun
+hatun, Saudi Arabia, hatun
+hatun, Armania, hatun
+hatun, Bulgaria, katun
+
+ışık, Türkiye, ışık
+ışık, Armenia, işik
+ışık, Albania, ıshık
+
+iç, Türkiye, iç
+iç, Iran, içreki
+iç, Armenia, iç
+iç, Hungary, ics-aga
+iç, Romania, ici-aga
+iç, Bulgaria, iç
+iç, Serbia, icaga
+iç, Albania, iç
+iç, North Macedonia, içeri
+
+iğne, Türkiye, iğne
+iğne, Saudi Arabia, igina
+iğne, Armenia, iynelik
+iğne, Hungary, szücs
+iğne, Romania, iglita
+iğne, Bulgaria, ennardı
+iğne, Serbia, ignelija
+iğne, Albania, anallek
+
+ikindi, Türkiye, ikindi
+ikindi, Iran, ekindi
+ikindi, Armenia, ikindi
+ikindi, Hungary, ikindi
+ikindi, Romania, chindie
+ikindi, Bulgaria, ikindiya
+ikindi, Serbia, icindija
+ikindi, Italy, ischindi
+ikindi, Albania, igindi
+ikindi, North Macedonia, ikindiya
+ikindi, Greece, kendi
+
+ince, Türkiye, ince
+ince, Saudi Arabia, inç
+ince, Bulgaria, ince
+ince, Serbia, indze
+ince, Albania, inte
+
+istek, Türkiye, istek
+istek, Armenia, istek
+istek, Bulgaria, isteciya
+istek, Serbia, istek
+istek, Albania, istek
+istek, North Macedonia, isteristemez
+
+kaba, Türkiye, kaba 
+kaba, Saudi Arabia, gaba
+kaba, Russia, gaba
+kaba, Armenia, kaba
+kaba, Bulgaria, kaba
+kaba, Serbia, kaba
+kaba, Albania, kaba
+kaba, North Macedonia, kaba
+kaba, Greece, kaba
+
+kadın, Türkiye, kadın
+kadın, China, kedün
+kadın, Saudi Arabia, kadun
+kadın, Russia, katuna
+kadın, Romania, cadina
+kadın, Bulgaria, kadin
+kadın, Serbia, kaduna
+kadın, Italy, kadin
+kadın, Albania, kadene
+kadın, Greece, kadin
+kadın, Germany, kadine
+kadın, United Kingdom, kadin
+
+kaftan, Türkiye, kaftan
+kaftan, Iran, haftan,
+kaftan, Saudi Arabia, haftan
+kaftan, Russia, kavtan
+kaftan, Armenia, haftan
+kaftan, Hungary, kaftan
+kaftan, Czech Republic, kaftan
+kaftan, Finland, kauhtana
+kaftan, Romania, caftan
+kaftan, Bulgaria, kaftan
+kaftan, Serbia, kaftan
+kaftan, Italy, caffettano
+kaftan, Albania, taftan
+kaftan, North Macedonia, kavtan
+kaftan, Greece, kaftani
+kaftan, France, cafecaftan
+kaftan, United Kingdom, caftan
+
+kalay, Türkiye, kalay
+kalay, Iran, kalayçi
+kalay, Saudi Arabia, kalay
+kalay, Armenia, kalay
+kalay, Romania, calangiu
+kalay, Bulgaria, kalay
+kalay, Serbia, kalaj
+kalay, Albania, kallaj
+kalay, North Macedonia, kalay
+kalay, Greece, kalai
+
+kamçı, Türkiye, kamçı
+kamçı, Iran, kamçi
+kamçı, Pakistan, kamçi
+kamçı, Saudi Arabia, kamşi
+kamçı, Russia, kamçuk
+kamçı, Armenia, kamçı
+kamçı, Hungary, kancsuka 
+kamçı, Czech Republic, koncuch
+kamçı, Bulgaria, kamçıya
+kamçı, Serbia, kandzija
+kamçı, Italy, camcı
+kamçı, Albania, kamçik
+kamçı, North Macedonia, kamcik
+kamçı, Greece, kamçıki
+
+kaoak, Türkiye, kapak
+kapak, Iran, kabkak
+kapak, Saudi Arabia, kapag
+kapak, Armenia, kapak
+kapak, Hungary, kupak
+kapak, Romania, capac
+kapak, Bulgaria, kapak
+kapak, Serbia, kapak
+kapak, Albania, kapak
+kapak, North Macedonia, kapak
+kapak, Greece, kapaki
+
+kara, Türkiye, kara
+kara, China, hala
+kara, Iran, kara
+kara, Saudi Arabia, kara
+kara, Armenia, kara
+kara, Russia, kariy
+kara, Romania, cara
+kara, Bulgaria, kara
+kara, Serbia, kara
+kara, Italy, cara
+kara, Albania, kara
+kara, North Macedonia, kara
+kara, Greece, kara
+kara, United Kingdom, karaburun
+
+kardeş, Türkiye, kardeş
+kardeş, Iran, karindaş
+kardeş, Saudi Arabia, kardaş
+kardeş, Hungary, kardas
+kardeş, Romania, cardaşesc
+kardeş, Bulgaria, kardaş
+kardeş, Serbia, kardas
+kardeş, North Macedonia, kardaş
+kardeş, Greece, karadaşis
+
+karga, Türkiye, karga
+karga, Iran, karga
+karga, Russia, korga
+karga, Armenia, karga
+karga, Romania, caragata
+karga, Bulgaria, garga
+karga, Serbia, karga
+karga, North Macedonia, garga
+karga, Greece, karga
+
+karışık, Türkiye, karışık
+karışık, Iran, karaşmiş
+karışık, Russia, karmagal
+karışık, Armenia, karışık
+karışık, Bulgaria, karaşık
+karışık, Serbia, karısik
+karışık, Greece, karma-karasik
+
+katık, Türkiye, katık
+katık, Iran, katık
+katık, Russia, katuk
+katık, Armenia, kati
+katık, Bulgaria, katuk
+katık, North Macedonia, katık
+katık, Greece, katukin
+
+kavun, Türkiye, kavun
+kavun, Iran, kavun
+kavun, Saudi Arabia, avun
+kavun, Armenia, kavun
+kavun, Russia, kavun
+kavun, Bulgaria, kaun
+kavun, Serbia, kavun
+kavun, North Macedonia, kavun
+kavun, Greece, kavuni
+
+kayık, Türkiye, kayık
+kayık, Iran, kayek
+kayık, Saudi Arabia, kayig
+kayık, Armenia, kayik
+kayık, Russia, kayuk
+kayık, Hungary, kajik
+kayık, Romania, caic
+kayık, Czech Republic, kaik
+kayık, Bulgaria, kaik
+kayık, Serbia, kajik
+kayık, Italy, caicco
+kayık, Albania, kaike
+kayık, North Macedonia, kaik-saan
+kayık, Greece, kaiki
+kayık, Germany, kajik
+kayık, France, caique
+kayık, United Kingdom, kaick
+
+kaymak, Türkiye, kaymak
+kaymak, Iran, keymak
+kaymak, Pakistan, kaymak
+kaymak, Saudi Arabia, kimak
+kaymak, Armenia, kaymak
+kaymak, Russia, kaymak
+kaymak, Romania, caimac
+kaymak, Bulgaria, kaymak
+kaymak, Serbia, kajmak
+kaymak, Albania, kaimak
+kaymak, North Macedonia, kaymak
+kaymak, Greece, kaimakion
+
+kebap, Türkiye, kebap
+kebap, Saudi Arabia, kabab
+kebap, Armenia, kebab
+kebap, Russia, kebav
+kebap, Romania, chebap
+kebap, Czech Republic, kepapci
+kebap, Bulgaria, kebap
+kebap, Serbia, cebap
+kebap, Albania, qabab
+kebap, Nort Macedonia, kyebap
+kebap, Greece, kebapi
+kebap, Germany, kebab
+kebap, United Kingdom, cabob
+
+keçe, Türkiyr, keçe
+keçe, Iran, kiz
+keçe, Saudi Arabia, kaça
+keçe, Russia, kıçka
+keçe, Armenia, keçe
+keçe, Hungary, kecse
+keçe, Romania, checea
+keçe, Bulgaria, keçe
+keçe, Serbia, ceca
+keçe, North Macedonia, keçe
+keçe, Greece, keçes
+
+keçi, Türkiye, keçi
+keçi, Saudi Arabia, kiççi
+keçi, Russia, keçka
+keçi, Armenia, keçi
+keçi, Hungary, kecske
+keçi, Bulgaria, keçe-deresi
+keçi, Albania, keç
+keçi, Greece, kaçika
+
+kılavuz, Türkiye, kılavuz
+kılavuz, Saudi Arabia, kalavuz
+kılavuz, Russia, kiliçey
+kılavuz, Armenia, kilavuz
+kılavuz, Hungary, kalavuz
+kılavuz, Romania, calauza
+kılavuz, Bulgaria, kulas
+kılavuz, Serbia, kalauz
+kılavuz, Albania, kullauz
+kılavuz, North Macedonia, kalauz
+kılavuz, Greece, kolauzo
+
+kılıç, Türkiye, kılıç
+kılıç, Iran, kiliç
+kılıç, Pakistan, kiriç
+kılıç, Saudi Arabia, kilic
+kılıç, Armenia, gilic
+kılıç, Hungary, kilincs
+kılıç, Romania, calaciu
+kılıç, Bulgaria, kaliç
+kılıç, Serbia, krluc
+kılıç, Albania, kelleç
+kılıç, North Macedonia, kalaç
+kılıç, Greece, kulicin
+
+kırbaç, Türkiye, kırbaç
+kırbaç, Saudi Arabia, kirbaç
+kırbaç, Russia, karbaç
+kırbaç, Armenia, kirbaç
+kırbaç, Hungary, korbacs
+kırbaç, Romania, garbaş
+kırbaç, Czech Republic, karabac
+kırbaç, Serbia, korbac
+kırbaç, Italy, kurbascio
+kırbaç, Albania, kerbaç
+kırbaç, North Macedonia, korbaç
+kırbaç, Greece, kurbaçi
+kırbaç, Germany, karwatsche
+kırbaç, United Kingdom, kourbash
+
+koltuk, Türkiye, koltuk
+koltuk, Iran, koltuk
+koltuk, Saudi Arabia, költüg
+koltuk, Russia, kultük
+koltuk, Armenia, koltuk
+koltuk, Hungary, szek
+koltuk, Romania, coltuc
+koltuk, Bulgaria, koltuk
+koltuk, Serbia, koltuk
+koltuk, Albania, koltuk
+koltuk, North Macedonia, koltuk
+koltuk, Greece, koltuki
+
+konak, Türkiye, konak
+konak, Iran, konalga
+konak, Saudi Arabia, konak
+konak, Armenia, konak
+konak, Russia, kunak
+konak, Hungary, konok
+konak, Romania, conac
+konak, Bulgaria, konak
+konak, Serbia, konak
+konak, Albania, konak
+konak, North Macedonia, kunak
+konak, Greece, konaki
+konak, Germany, konak
+konak, United Kingdom, konak
+
+koyun, Türkiye, koyun
+koyun, China, huo-nichi
+koyun, Armenia, koyin
+koyun, Iran, koy
+koyun, Hungary, koin eming
+koyun, Bulgaria, koin
+koyun, North Macedonia, koyin pazar
+
+kopuz, Türkiye, kopuz
+kopuz, China, hubosi
+kopuz, Iran, kobuz
+kopuz, Saudi Arabia, kubuz
+kopuz, Russia, kobza
+kopuz, Hungary, koboz
+kopuz, Romania, cobuz
+kopuz, Czech Republic, kobos
+kopuz, Greece, kubuzi
+
+kova, Türkiye, kova
+kova, Russia, kuga
+kova, Armenia, koga
+kova, Hungary, kofa
+kova, Finland, kopa
+kova, Romania, cofa
+kova, Bulgaria, kofa
+kova, Serbia, kofe
+kova, Albania, kove
+kova, Italy, cofe
+kova, Greece, kuvas
+
+köşk, Türkiye, köşk
+köşk, Iran, kuşk
+köşk, Saudi Arabia, kişk
+köşk, Armenia, köşk
+köşk, Russia, kiosk
+köşk, Hungary, kioszk
+köşk, Finland, küle
+köşk, Romania, chiosc
+köşk, Czech Republic, kiosk
+köşk, Bulgaria, köşk
+köşk, Serbia, cosk
+köşk, Italy, chiosco
+köşk, Albania, qoshk
+köşk, North Macedonia, kyoşk
+köşk, Greece, kioski
+köşk, Germany, kiosk
+köşk, France, kiosque
+köşk, United Kingdom, kiosk
+
+kömür, Türkiye, kömür
+kömür, Iran, taş-kömür
+kömür, Armenia, kömür
+kömür, Bulgaria, kömyur
+kömür, Serbia, cumur
+kömür, Albania, qymyr
+kömür, North Macedonia, kyumur
+kömür, Greece, kimur
+
+kuşak, Türkiye, kuşak
+kuşak, Iran, kuşak
+kuşak, Saudi Arabia, kuşat
+kuşak, Russia, kuşak
+kuşak, Finland, kusakka
+kuşak, Romania, cuşac
+kuşak, Bulgaria, koşak
+kuşak, Serbia, kusak
+kuşak, Albania, kushak
+kuşak, North Macedonia, kuşak
+kuşak, Greece, kusaki
+
+kuzu, Türkiye, kuzu
+kuzu,Iran, kuzi
+kuzu, Saudi Arabia, kuzah
+kuzu, Armenia, kuzi
+kuzu, Russia, guran
+kuzu, Bulgaria, kuzu
+kuzu, Serbia, kuz
+kuzu, North Macedonia, kuzu
+kuzu, Greece, kuzi
+
+kürek, Türkiye, kürek
+kürek, Saudi Arabia, karraka
+kürek, Russia, kirka
+kürek, Armenia, kürek
+kürek, Finland, kuurikka
+kürek, Bulgaria, kyurek
+kürek, Albania, qyrek
+kürek, Greece, kürek
+
+kürk, Türkiye, kürk
+kürk, Iran, kürk
+kürk, Saudi Arabia, kurk
+kürk, Russia, kurta
+kürk, Armenia, kürk
+kürk, Hungary, csurak
+kürk, Romania, chiurec
+kürk, Bulgaria, kurka
+kürk, Serbia, curak
+kürk, Albania, qyrk
+kürk, North Macedonia, kyurk
+kürk, Greece, kürkçü
+
+mangır, Türkiye, mangır
+mangır, Saudi Arabia, mangir
+mangır, Russia, mangır
+mangır, Armenia, mangır
+mangır, Hungary, mangur
+mangır, Romania, mangar
+mangır, Bulgaria, mangir
+mangır, Serbia, mangura
+mangır, Albania, manger
+mangır, North Macedonia, mangarçe
+mangır, Greece, manğkira
+mangır, United Kingdom, mangour
+
+minder, Türkiye, minder
+minder, Saudi Arabia, mandar
+minder, Russia, minder
+minder, Armenia, minder
+minder, Romania, mindir
+minder, Bulgaria, mender
+minder, Serbia, mınder
+minder, Albania, minner
+minder, North Macedonia, minder
+minder, Greece, minteri
+
+mor, Türkiye, mor
+mor, Saudi Arabia, mur
+mor, Armania, mor
+mor, Romania, mormaviu
+mor, Bulgaria, mor
+mor, Serbia, mor
+mor, Albania, mor
+mor, North Macedonia, mor
+
+muhallebi, Türkiye, muhallebi
+muhallebi, Armenia, mahallebi
+muhallebi, Bulgaria, malebi
+muhallebi, Serbia, muhallebija
+muhallebi, Albania, muhalebi
+muhallebi, North Macedonia, malebie
+muhallebi, Greece, mahlebi
+muhallebi, France, macaleb
+muhallebi, United Kingdom, mahaleb
+
+ninni, Türkiye, ninni
+ninni, Saudi Arabia, nanna
+ninni, Armenia, neni
+ninni, Albania, ninni
+
+oba, Türkiye, oba
+oba, Iran, oba
+oba, Saudi Arabia, oba
+oba, Romania, oba
+
+ocak, Türkiye, ocak
+ocak, China, e tuo ke
+ocak, Iran, ocag
+ocak, Pakistan, ucag
+ocak, Saudi Arabia, vicak
+ocak, Russia, oçag
+ocak, Armenia, ocah
+ocak, Hungary, ocsak
+ocak, Romania, ogeac
+ocak, Bulgaria, ocak
+ocak, Serbia, odzak
+ocak, Albania, oxhak
+ocak, North Macedonia, ucak
+ocak, Greece, ocaki
+
+oğlan, Türkiye, oğlan
+oğlan, Iran, ogul
+oğlan, Russia, uglan
+oğlan, Armenia, ogul
+oğlan, Hungary, uhlan
+oğlan, Romania, ulan
+oğlan, Czech Republic, hulan
+oğlan, Bulgaria, holan
+oğlan, Serbia, ulan
+oğlan, Italy, ulani
+oğlan, Greece, oglanis
+
+ok, Türkiye, ok
+ok, Iran, ok
+ok, Armenia, ok
+ok, Bulgaria, ok
+ok, Serbia, ok
+ok, North Macedonia, ok
+
+otağ, Türkiye, otağ
+otağ, China, e tuo ke
+otağ, Iran, otak
+otağ, Pakistan, utaq
+otağ, Saudi Arabia, vitak
+otağ, Russia, vataga
+otağ, Armenia, otak
+otağ, Hungary, hodaly
+otağ, Finland, vatakka
+otağ, Romania, otac
+otağ, Bulgaria, odaya
+otağ, Albania, odae
+otağ, Greece, odas
+
+ölçü, Türkiye, ölçü
+ölçü, Iran, ülgü
+ölçü, Saudi Arabia, olçi
+ölçü, Bulgaria, ölçiya
+ölçü, Serbia, ulcija
+ölçü, Greece, ölçus
+
+önlük, Türkiye, önlük
+önlük, Armenia, ölük
+önlük, Saudi Arabia, onluk
+
+ördek, Türkiye, ördek
+ördek, Iran, urdek
+ördek, Saudi Arabia, vardak
+ördek, Armania, ördek
+ördek, Bulgaria, yurdek
+
+pancar, Türkiye, pancar
+pancar, Iran, çükündür
+pancar, Saudi Arabia, bancar
+pancar, Armenia, pancar
+pancar, Romania, pangea
+pancar, Bulgaria, pancar
+pancar, Albania, panxhar
+pancar, North Macedonia, pancar
+pancar, Greece, pancaris
+
+pastırma, Türkiye, pastırma
+pastırma, Saudi Arabia, bastirma
+pastırma, Armenia, pasdirma
+pastırma, Hungary, pasztormany
+pastırma, Romania, pastrama
+pastırma, Czech Republic, pastyrma
+pastırma, Bulgaria, pastırma
+pastırma, Serbia, pastrma
+pastırma, Albania, pasterma
+pastırma, North Macedonia, pastramayka
+pastırma, Greece, pastramas
+
+peki, Türkiye, peki
+peki, Saudi Arabia, bekye
+peki, Bulgaria, peki
+peki, Serbia, peke
+peki, North Macedonia, peki
+
+portakal, Türkiye, portakal
+portakal, Saudi Arabia, burtakal
+portakal, Armenia, portakal
+portakal, Romania, portocal
+portakal, Bulgaria, portokal
+portakal, Serbia, portokal
+portakal, Albania, portokal
+portakal, Greece, portokali
+
+rastgele, Türkiye, rastgele
+rastgele, Armenia, irast gele
+rastgele, Bulgaria, razgele
+rastgele, Serbia, razdele
+rastgele, North Macedonia, razgyele
+
+saban, Türkiye, saban
+saban, Russia, saban
+saban, Bulgaria, zaban
+saban, North Macedonia, saban
+saban, Greece, saban
+
+saç, Türkiye, saç
+saç, Iran, saç
+saç, Russia, çaçvan
+saç, Bulgaria, saç
+saç, Serbia, sac-boja
+saç, North Macedonia, saç
+
+sağlam, Türkiye, sağlam
+sağlam, Saudi Arabia, saglam
+sağlam, Armenia, saglam
+sağlam, Bulgaria, saglam
+sağlam, Serbia, saglan
+sağlam, Albania, sagllam
+sağlam, North Macedonia, saglam
+sağlam, Greece, sağlamis
+
+sancak, Türkiye, sancak
+sancak, Iran, sancak
+sancak, Saudi Arabia, sancak
+sancak, Russia, sançak
+sancak, Armenia, sancak
+sancak, Hungary, szancsak
+sancak, Romania, sanceac
+sancak, Czech Republic, sandzak
+sancak, Bulgaria, sancak
+sancak, Serbia, sandzak
+sancak, Italy, sangiacco
+sancak, Albania, sanxhak
+sancak, North Macedonia, sancak
+sancak, Greece, sancakia
+
+sekiz, Türkiye, sekiz
+sekiz, Iran, sekkiz
+sekiz, Saudi Arabia, sekizinci
+sekiz, Russia, sekis
+sekiz, Bulgaria, sekis-dokuz
+
+sıra, Türkiye, sıra
+sıra, Saudi Arabia, sira
+sıra, Armenia, sira
+sıra, North Macedonia, sor
+sıra, Romania, şir
+sıra, Bulgaria, sara
+sıra, Serbia, sura
+sıra, Albania, sira
+sıra, Greece, seira
+
+sirke, Türkiye, sirke
+sirke, Iran, sirke
+sirke, Pakistan, sirka
+sirke, Russia, sirka
+sirke, Armenia, sirke
+sirke, North Macedonia, serke
+sirke, Serbia, sırce
+sirke, Greece, sirke
+
+soğuk, Türkiye, soğuk
+soğuk, Saudi Arabia, şavugbizi
+soğuk, Russia, siugan
+soğuk, Bulgaria, sukluk
+
+söz, Türkiye, söz
+söz, Iran, söz
+söz, Armenia, sözde
+söz, North Macedonia, szo
+söz, Bulgaria, söz
+söz, Greece, sozde
+
+sürgün, Türkiye, sürgün
+sürgün, Saudi Arabia, sarcin
+sürgün, Armenia, sürgün
+sürgün, Romania, surkhiun
+sürgün, Bulgaria, syurgyun
+sürgün, Serbia, surgun
+sürgün, Albani, srygyn
+sürgün, North Macedonia, surgundisa
+sürgün, Greece, surğuni
+
+şaka, Türkiye, şaka
+şaka, Saudi Arabia, şaka
+şaka, Armenia, şaka
+şaka, Romania, şaga
+şaka, Bulgaria, şega
+şaka, Serbia, sega
+şaka, Albania, shaka
+şaka, North Macedonia, şakaciya
+şaka, Greece, sakas
+
+şenlik, Türkiye, şenlik
+şenlik, Saudi Arabia, şinik
+şenlik, Armenia, şenlik
+şenlik, Bulgaria, şenlık
+şenlik, Serbia, senluk
+şenlik, North Macedonia, şenlık
+
+şiş, Türkiye, şiş
+şiş, Iran, şiş
+şiş, Saudi Arabia, şiş
+şiş, Russia, şaşlık
+şiş, Armenia, şiş
+şiş, Romania, şiş
+şiş, Bulgaria, şiş
+şiş, Serbia, sis
+şiş, Albania, shish
+şiş, North Macedonia, şiş
+şiş, Greece, sis
+
+taban, Türkiye, taban
+taban, Saudi Arabia, daban
+taban, Russia, tabani
+taban, Armenia, daban
+taban, Romania, taban
+taban, Bulgaria, taban
+taban, Serbia, taban
+taban, Albania, taban
+taban, North Macedonia, taban
+taban, Greece, tabana
+
+takım, Türkiye, takım
+takım, Saudi Arabia, atkun
+takım, Armenia, takım
+takım, Romania, tacim
+takım, Bulgaria, takım
+takım, Serbia, takum
+takım, Albania, takom
+
+tabur, Türkiye, tabur
+tabur, Iran, tabor
+tabur, Saudi Arabia, tabur
+tabur, Russia, tabor
+tabur, Armenia, tabor
+tabur, Hungary, tabor
+tabur, Romania, tabara
+tabur, Bulgaria, tabur
+tabur, Serbia, tabor
+tabur, Albania, tabuar
+tabur, North Macedonia, tabur
+tabur, Greece, tabori
+tabur, Germany, tabor
+tabur, United Kingdom, taborite
+
+tekne, Türkiye, tekne
+tekne, Saudi Arabia, takna
+tekne, Armenia, tekne
+tekne, Hungary, tekenö
+tekne, Romania, tejke
+tekne, Bulgaria, tekne
+tekne, Serbia, tekne
+tekne, North Macedonia, tekne
+tekne, Greece, teknes
+
+ters, Türkiye, ters
+ters, Iran, ters
+ters, Saudi Arabia, ters
+ters, Armenia, ters
+ters, Bulgaria, ters
+ters, Serbia, ters
+ters, Albania, ters
+ters, Greece, tersis
+
+tırnak, Türkiye, tırnak
+tırnak, Iran, dirnak
+tırnak, Saudi Arabia, tirnak
+tırnak, Armenia, tırnak
+tırnak, Bulgaria, tırnak
+
+tok, Türkiye, tok
+tok, Iran, tuk
+tok, Saudi Arabia, toh
+tok, Russia, tuk
+tok, North Macedonia, tok
+tok, Bulgaria, tok
+tok, Albania, dog
+
+türk, Türkiye, türk 
+türk, Saudi Arabia, turk
+türk, Iran, türk
+türk, Pakistan, turak
+türk, Russia, torki
+türk, Armenia, türk
+türk, Hungary, török
+türk, Romania, turc
+türk, Czech Republic, turecke
+türk, Italy, turco
+türk, Albania, tyrk
+türk, Greece, turkoğıflos
+türk, Gremany, türk
+türk, United Kingdom, turcism
+
+uç, Türkiye, uç
+uç, Iran, öc
+uç, Saudi Arabia, uc
+uç, Bulgaria, uç
+uç, Greece, uçunta
+
+uğur, Türkiye, uğur
+uğur, Iran, ugur
+uğur, Saudi Arabia, yugur
+uğur, Armenia, ugur
+uğur, Romania, ogur
+uğur, Bulgaria, ur
+uğur, Serbia, ugur
+uğur, Albania, ogur
+uğur, North Macedonia, ugursuz
+uğur, Greece, uğuri
+
+umut, Türkiye, umut
+umut, Armenia, umut
+umut, Bulgaria, umut
+umut, Albania, omuth
+umut, North Macedonia, umut
+umut, Greece, umuti
+
+uygun, Türkiye, uygun
+uygun, Armenia, uygun
+uygun, Bulgaria, uygun
+uygun, Serbia, ujgun
+uygun, North Macedonia, uygun
+uygun, Albania, ujgun
+
+uzun, Türkiye, uzun
+uzun, Iran, uzunburun
+uzun, Saudi Arabia, özün
+uzun, Bulgaria, uzun
+uzun, Serbia, uzun
+uzun, Greece, uzun-boylus
+
+ülke, Türkiye, ülke
+ülke, Iran, ölke
+ülke, Saudi Arabia, ülket
+ülke, Bulgaria, yulke
+ülke, Serbia, ulce
+ülke, Albania, ylqe
+
+üst, Türkiye, üst
+üst, Bulgaria, yuste
+üst, Serbia, ustisati
+üst, Albania, yst
+üst, North Macedonia, yust
+
+ütü, Türkiye, ütü
+ütü, Iran, utu
+ütü, Saudi Arabia, uti
+ütü, Russia, utyug
+ütü, Armenia, ütü
+ütü, Finland, utukka
+ütü, Bulgaria, yutiya
+ütü, Serbia, utija
+ütü, Albania, yti
+ütü, North Macedonia, utiya
+
+üzüm, Türkiye, üzüm
+üzüm, China, wu ji men
+üzüm, Iran, üzüm
+üzüm, Russia, izyum
+üzüm, Armenia, üzüm
+üzüm, Hungary, szolo
+üzüm, Bulgaria, gımza
+üzüm, Greece, uzon
+
+var, Türkiye, var
+var, Iran, bar
+var, Russia, barin
+var, Hungary, barom
+var, Bulgaria, vargicyule
+var, Serbia, var
+
+veresiya, Türkiye, veresiye
+veresiye, Saudi Arabia, farisya
+veresiye, Armenia, verasya
+veresiye, Romania, veresi
+veresiye, Bulgaria, veresiya
+veresiye, Serbia, veresija
+veresiye, Albania, veresie
+veresiye, North Macedonia, veresiya
+veresiye, Greece, verese
+
+vergi, Türkiye, vergi
+vergi, Iran, verdük
+vergi, Saudi Arabia, verku
+vergi, Russia, barış
+vergi, Armenia, vergi
+vergi, Hungary, ber
+vergi, Romania, bir
+vergi, Bulgaria, vergiya
+vergi, Serbia, vergija
+vergi, Albania, vergji
+vergi, North Macedonia, vergiya
+vergi, Greece, verğki
+
+yabancı, Türkiye, yabancı
+yabancı, Armenia, yabanci
+yabancı, Romania, iabangiu
+yabancı, Bulgaria, yabancıya
+
+yağız, Türkiye, yağız
+yağız, Iran, cegerde
+yağız, Russia, nagar
+yağız, Romania, oacheş
+yağız, Serbia, jagiz
+
+yağmurluk, Türkiye, yağmurluk
+yağmurluk, Russia, yalamok
+yağmurluk, Armenia, yagmurluk
+yağmurluk, Romania, imurluc
+yağmurluk, Bulgaria, yamurluk
+yağmurluk, Serbia, jamurluk
+yağmurluk, Italy, gianberlucco
+yağmurluk, Germany, llamburllek
+yağmurluk, North Macedonia, yagmurlak
+yağmurluk, Greece, ğiağmurluki
+
+yaka, Türkiye, yaka
+yaka, Iran, yaha
+yaka, Saudi Arabia, yaha
+yaka, Russia, yega
+yaka, Armenia, yeka
+yaka, Hungary, nyak
+yaka, Romania, iaca
+yaka, Bulgaria, yaka
+yaka, Serbia, jaka
+yaka, Albania, jake
+yaka, North Macedonia, yaka
+yaka, Greece, ğiaki
+
+yalan, Türkiye, yalan
+yalan, Iran, yalan
+yalan, Russia, yalıman
+yalan, Bulgaria, yalan
+yalan, Serbia, jalan
+yalan, Albania, jallane
+yalan, North Macedonia, yalanciya
+yalan, Greece, yalancıs
+
+yaprak, Türkiye, yaprak
+yaprak, Saudi Arabia, yiprag
+yaprak, Armenia, yaprak
+yaprak, Bulgaria, sarıyaprak
+yaprak, Serbia, japrak
+yaprak, Albania, japrak
+yaprak, Greece, yaprakia
+
+yelken, Türkiye, yelken
+yelken, Iran, yelken
+yelken, Saudi Arabia, yalkanci
+yelken, Armenia, yelken
+yelken, Bulgaria, yelken
+yelken, Serbia, jelcen
+yelken, North Macedonia, elken
+yelken, Greece, yelkanin
+
+yok, Türkiye, yok
+yok, Saudi Arabia, yuh
+yok, Armenia, yok
+yok, Romania, ioc
+yok, Bulgaria, yok
+yok, Serbia, jok
+yok, Albania, jore
+yok, North Macedonia, yok
+yok, Greece, yok
+
+yol, Türkiye, yol
+yol, Iran, yoli
+yol, Armenia, yol
+yol, Bulgaria, yol
+yol, Serbia, jol
+yol, Albania, jollxhi
+yol, Greece, ğiol
+
+yufka, Türkiye, yufka
+yufka, Iran, yuharı
+yufka, Armenia, yufka
+yufka, Russia, şuga
+yufka, Romania, iofca
+yufka, Czech Republic, jufka
+yufka, Bulgaria, yufka
+yufka, Serbia, suval
+yufka, Albania, jufke
+yufka, North Macedonia, yufka
+yufka, Greece, ğiofkas
+
+yurt, Türkiye, yurt
+yurt, Iran, yurt
+yurt, Armenia, yurt
+yurt, Saudi Arabia, yurta
+yurt, Russia, yurt
+yurt, Czech Republic, jurta
+yurt, Bulgaria, yurt
+
+yüzük, Türkiye, yüzük
+yüzük, Iran, üzük
+yüzük, Hungary, gyüru
+yüzük, Romania, iucsucea
+yüzük, Serbia, juksuk
+yüzük, Greece, yussuk
+
+zar, Türkiye, zar
+zar, Armenia, zar
+zar, Saudi Arabia, zar
+zar, Romania, zar
+zar, Bulgaria, zar
+zar, Serbia, zar
+zar, Albania, zar
+zar, North Macedonia, kel-zaar
+zar, Greece, zaria
+
+zeybek, Türkiye, zeybek
+zeybek, Saudi Arabia, zaybak
+zeybek, Armenia, zeybek
+zeybek, Bulgaria, zebek
+zeybek, Serbia, zejbekast
+zeybek, Albania, zembek
+zeybek, North Macedonia, zeybek
+zeybek, Greece, zebeki
