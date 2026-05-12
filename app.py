@@ -5,7 +5,6 @@ import os
 import base64 # Yerel görseli CSS içine gömmek için gerekli kütüphane
 
 # --- 1. Sayfa Ayarları ve Başlık ---
-# Sidebar state ayarını sildik çünkü artık sol paneli hiç kullanmayacağız.
 st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi")
 
 # --- 2. Yerel Arka Plan Görselini Hazırlama (Base64) ---
@@ -130,8 +129,14 @@ with banner_col1:
 
 with banner_col2:
     st.markdown("<h4 style='color:#8B0000; margin-top:0;'>🎨 Görünüm</h4>", unsafe_allow_html=True)
-    highlight_color = st.color_picker("Vurgulama Rengi", "#8B0000") 
-    show_markers = st.checkbox("Ülke İşaretçileri", value=True)
+    # Görünüm ayarlarını kendi içinde iki yan yana sütuna bölüyoruz
+    g_col1, g_col2 = st.columns([1, 1.5])
+    with g_col1:
+        highlight_color = st.color_picker("Vurgulama Rengi", "#8B0000") 
+    with g_col2:
+        # Checkbox'ın renk seçici kareyle dikeyde aynı hizada durması için boşluk ekliyoruz
+        st.markdown("<div style='margin-top: 32px;'></div>", unsafe_allow_html=True)
+        show_markers = st.checkbox("Ülke İşaretçileri", value=True)
 
 with banner_col3:
     # Proje bilgilerini şık bir kutu içine aldık
@@ -283,7 +288,8 @@ fig.update_layout(
     ),
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
-    margin=dict(l=10, r=10, t=20, b=10),
+    # t=60 yaparak başlığın çizginin altında kalmasını engelledik
+    margin=dict(l=10, r=10, t=60, b=10),
     transition=dict(duration=600, easing="cubic-in-out")
 )
 
