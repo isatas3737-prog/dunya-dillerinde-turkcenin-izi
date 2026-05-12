@@ -18,26 +18,41 @@ if os.path.exists(bg_image_path):
 else:
     bg_image_url = ""
 
-# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran, Menü Gizleme ve Panel Sabitleme ---
+# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran ve Vurgulu Buton ---
 custom_css = """
 <style>
-/* Sağ üstteki 'Share' menüsünü, header'ı ve footer'ı tamamen gizleme */
-#MainMenu {visibility: hidden;}
-header {visibility: hidden; height: 0px !important;}
-footer {visibility: hidden;}
+/* Header arka planını şeffaf yap, sağ üstteki Share vb. gereksiz menüleri gizle */
+header { background-color: transparent !important; }
+[data-testid="stToolbar"], [data-testid="stActionElements"] { display: none !important; }
 
-/* Yan paneli kapatma (ok) tuşunu ve 'keyboard_double' yazısını KESİN olarak gizleme */
-[data-testid="collapsedControl"],
+/* YAN PANEL AÇMA/KAPAMA BUTONUNU VURGULAMA */
 [data-testid="stSidebarCollapseButton"],
-button[kind="header"] {
-    display: none !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-    position: absolute !important;
-    z-index: -9999 !important;
+[data-testid="collapsedControl"] {
+    display: inline-flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background-color: #8B0000 !important; /* Bordo Arka Plan */
+    color: white !important;
+    border-radius: 6px !important;
+    transform: scale(1.2) !important; /* Butonu %20 büyüttük */
+    margin-top: 5px !important;
+    margin-left: 15px !important;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.3) !important;
+    transition: all 0.3s ease !important;
+    z-index: 99999 !important;
+}
+
+/* Fare üzerine geldiğinde butonun rengi koyulaşsın */
+[data-testid="stSidebarCollapseButton"]:hover,
+[data-testid="collapsedControl"]:hover {
+    background-color: #4A0000 !important;
+}
+
+/* Butonun içindeki ok ikonunu beyaz yapıyoruz */
+[data-testid="stSidebarCollapseButton"] svg,
+[data-testid="collapsedControl"] svg {
+    fill: white !important;
+    color: white !important;
 }
 
 /* Ana arka plan ve YEREL Piri Reis Haritası Filigranı */
@@ -48,12 +63,10 @@ button[kind="header"] {
     background-attachment: fixed;
 }
 
-/* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz ve genişliği sabitliyoruz */
+/* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz */
 [data-testid="stSidebar"] {
     background-color: rgba(244, 236, 216, 0.95) !important;
     border-right: 2px solid #D3C6A6 !important;
-    min-width: 320px !important;
-    max-width: 320px !important; 
 }
 
 /* Genel metin stili */
@@ -137,7 +150,6 @@ tur_to_eng = {
     "japonya": "Japan", "rusya": "Russia", "kanada": "Canada", "avustralya": "Australia"
 }
 
-# ISO kodlarını ekranda düzgün Türkçe göstermek için sözlük
 iso_to_tur = {
     "TUR": "Türkiye", "DEU": "Almanya", "FRA": "Fransa", "ITA": "İtalya",
     "ESP": "İspanya", "GBR": "İngiltere", "CHN": "Çin", "IND": "Hindistan",
@@ -199,8 +211,10 @@ def name_to_iso3(name: str):
 # --- UI ve Tema Ayarları ---
 st.sidebar.markdown("<h2 style='color: #8B0000; margin-top: 0;'>Ayarlar</h2>", unsafe_allow_html=True)
 
-words = sorted(mapping.keys(), key=lambda s: s.lower())
-selected = st.sidebar.selectbox("Bir kelime seçin", words)
+# Kelime seçme alanı açılır/kapanır (expander) yapıldı
+with st.sidebar.expander("🔍 Kelime Seçim Menüsü", expanded=True):
+    words = sorted(mapping.keys(), key=lambda s: s.lower())
+    selected = st.selectbox("Listeden bir kelime seçin:", words)
 
 highlight_color = st.sidebar.color_picker("Vurgulama rengi", "#8B0000") 
 show_markers = st.sidebar.checkbox("Ülke işaretçileri göster", value=True)
@@ -239,7 +253,7 @@ for e in entries:
     elif country_raw.lower() in tur_to_eng:
         display_name = country_raw.title()
         
-    e["display_name"] = display_name # UI listesi için kaydet
+    e["display_name"] = display_name 
     
     if iso:
         iso_list.append(iso)
