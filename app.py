@@ -18,20 +18,32 @@ if os.path.exists(bg_image_path):
 else:
     bg_image_url = ""
 
-# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran ve Vurgulu Panel Butonu ---
+# --- 3. Özel CSS ile Tıklama Sorunlarını Çözme ve Tema Enjeksiyonu ---
 custom_css = """
 <style>
-/* Header arka planını şeffaf yap, sağ üstteki Share vb. gereksiz menüleri gizle */
-header { background-color: transparent !important; }
-[data-testid="stToolbar"], [data-testid="stActionElements"] { display: none !important; }
+/* Üst kısımdaki gizli header'ın tıklamaları engellememesi için pointer-events: none yapıyoruz (Görünmez camı kaldırır) */
+header { 
+    background-color: transparent !important; 
+    pointer-events: none !important; 
+}
 
-/* YAN PANEL AÇMA/KAPAMA BUTONUNU VURGULAMA (Doğal işleyişi bozmadan) */
+/* Sağ üstteki gereksiz Streamlit menülerini tamamen kaldırıyoruz */
+[data-testid="stToolbar"], [data-testid="stActionElements"] { 
+    display: none !important; 
+}
+
+/* YAN PANEL AÇMA/KAPAMA BUTONUNU VURGULAMA VE TIKLANABİLİR YAPMA */
 [data-testid="collapsedControl"], 
 [data-testid="stSidebarCollapseButton"] {
-    background-color: rgba(139, 0, 0, 0.85) !important; /* Bordo Arka Plan */
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important; /* Butonun tıklanmasını garanti altına alır */
+    background-color: rgba(139, 0, 0, 0.9) !important; /* Bordo Arka Plan */
     border-radius: 6px !important;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.3) !important;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.3) !important;
     transition: all 0.3s ease !important;
+    z-index: 999999 !important; /* Her şeyin üstünde durmasını sağlar */
 }
 
 /* Fare üzerine geldiğinde rengi koyulaşsın */
@@ -47,18 +59,19 @@ header { background-color: transparent !important; }
     color: white !important;
 }
 
+/* Yan panel (Sidebar) tıklanabilirliğini garanti etme */
+[data-testid="stSidebar"] {
+    pointer-events: auto !important;
+    background-color: rgba(244, 236, 216, 0.95) !important;
+    border-right: 2px solid #D3C6A6 !important;
+}
+
 /* Ana arka plan ve YEREL Piri Reis Haritası Filigranı */
 [data-testid="stAppViewContainer"] {
     background-image: linear-gradient(rgba(253, 246, 227, 0.88), rgba(253, 246, 227, 0.88)), url("BG_IMAGE_URL_PLACEHOLDER");
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-}
-
-/* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz */
-[data-testid="stSidebar"] {
-    background-color: rgba(244, 236, 216, 0.95) !important;
-    border-right: 2px solid #D3C6A6 !important;
 }
 
 /* Genel metin stili */
@@ -203,7 +216,7 @@ def name_to_iso3(name: str):
 # --- UI ve Tema Ayarları ---
 st.sidebar.markdown("<h2 style='color: #8B0000; margin-top: 0;'>Ayarlar</h2>", unsafe_allow_html=True)
 
-# Kelime seçme kutusu artık açılır-kapanır alan olmadan doğrudan panele yerleştirildi
+# Kelime seçme kutusu doğrudan panele yerleştirildi
 words = sorted(mapping.keys(), key=lambda s: s.lower())
 selected = st.sidebar.selectbox("Listeden bir kelime seçin:", words)
 
