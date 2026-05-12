@@ -18,39 +18,31 @@ if os.path.exists(bg_image_path):
 else:
     bg_image_url = ""
 
-# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran ve Vurgulu Buton ---
+# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran ve Vurgulu Panel Butonu ---
 custom_css = """
 <style>
 /* Header arka planını şeffaf yap, sağ üstteki Share vb. gereksiz menüleri gizle */
 header { background-color: transparent !important; }
 [data-testid="stToolbar"], [data-testid="stActionElements"] { display: none !important; }
 
-/* YAN PANEL AÇMA/KAPAMA BUTONUNU VURGULAMA */
-[data-testid="stSidebarCollapseButton"],
-[data-testid="collapsedControl"] {
-    display: inline-flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    background-color: #8B0000 !important; /* Bordo Arka Plan */
-    color: white !important;
+/* YAN PANEL AÇMA/KAPAMA BUTONUNU VURGULAMA (Doğal işleyişi bozmadan) */
+[data-testid="collapsedControl"], 
+[data-testid="stSidebarCollapseButton"] {
+    background-color: rgba(139, 0, 0, 0.85) !important; /* Bordo Arka Plan */
     border-radius: 6px !important;
-    transform: scale(1.2) !important; /* Butonu %20 büyüttük */
-    margin-top: 5px !important;
-    margin-left: 15px !important;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.3) !important;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.3) !important;
     transition: all 0.3s ease !important;
-    z-index: 99999 !important;
 }
 
-/* Fare üzerine geldiğinde butonun rengi koyulaşsın */
-[data-testid="stSidebarCollapseButton"]:hover,
-[data-testid="collapsedControl"]:hover {
-    background-color: #4A0000 !important;
+/* Fare üzerine geldiğinde rengi koyulaşsın */
+[data-testid="collapsedControl"]:hover, 
+[data-testid="stSidebarCollapseButton"]:hover {
+    background-color: rgba(139, 0, 0, 1) !important;
 }
 
 /* Butonun içindeki ok ikonunu beyaz yapıyoruz */
-[data-testid="stSidebarCollapseButton"] svg,
-[data-testid="collapsedControl"] svg {
+[data-testid="collapsedControl"] svg, 
+[data-testid="stSidebarCollapseButton"] svg {
     fill: white !important;
     color: white !important;
 }
@@ -211,10 +203,9 @@ def name_to_iso3(name: str):
 # --- UI ve Tema Ayarları ---
 st.sidebar.markdown("<h2 style='color: #8B0000; margin-top: 0;'>Ayarlar</h2>", unsafe_allow_html=True)
 
-# Kelime seçme alanı açılır/kapanır (expander) yapıldı
-with st.sidebar.expander("🔍 Kelime Seçim Menüsü", expanded=True):
-    words = sorted(mapping.keys(), key=lambda s: s.lower())
-    selected = st.selectbox("Listeden bir kelime seçin:", words)
+# Kelime seçme kutusu artık açılır-kapanır alan olmadan doğrudan panele yerleştirildi
+words = sorted(mapping.keys(), key=lambda s: s.lower())
+selected = st.sidebar.selectbox("Listeden bir kelime seçin:", words)
 
 highlight_color = st.sidebar.color_picker("Vurgulama rengi", "#8B0000") 
 show_markers = st.sidebar.checkbox("Ülke işaretçileri göster", value=True)
