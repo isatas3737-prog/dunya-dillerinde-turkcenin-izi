@@ -1,11 +1,43 @@
-# app.py
 import streamlit as st
 import pycountry
 import plotly.graph_objects as go
 import os
 
-st.set_page_config(layout="wide", page_title="Kelime → Yerel Karşılık Haritası")
-st.title("🌍 Kelime → Ülke Bazlı Yerel Karşılık Haritası")
+# --- 1. Sayfa Ayarları ve Başlık ---
+st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi")
+
+# --- 2. Özel CSS ile Tarihi ve Kültürel Tema Enjeksiyonu ---
+custom_css = """
+<style>
+/* Ana arka plan (Eskitilmiş kağıt / parşömen rengi ve dokusu) */
+.stApp {
+    background-color: #FDF6E3;
+    background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png");
+}
+
+/* Başlık renkleri ve fontu (Klasik serif ve Bordo tonları) */
+h1, h2, h3, h4, h5, h6 {
+    color: #8B0000 !important;
+    font-family: 'Georgia', serif !important;
+}
+
+/* Yan panel (Sidebar) arka planı */
+[data-testid="stSidebar"] {
+    background-color: #F4ECD8;
+    border-right: 2px solid #D3C6A6;
+}
+
+/* Genel metin stili */
+html, body, p, span, div, li {
+    font-family: 'Georgia', serif !important;
+    color: #3E2723;
+}
+</style>
+"""
+st.markdown(custom_css, unsafe_allow_html=True)
+
+# Başlık ve Simge Güncellemesi
+st.title("🇹🇷 Dünya Dillerinde Türkçenin İzi")
 
 # --- kelime.txt oku ---
 cwd = os.getcwd()
@@ -65,7 +97,7 @@ if not mapping:
     st.error("kelime.txt parse edilemedi veya uygun satır yok.")
     st.stop()
 
-# --- basit Türkçe -> İngilizce ülke eşleme (gerekirse genişlet) ---
+# --- basit Türkçe -> İngilizce ülke eşleme ---
 tur_to_eng = {
     "türkiye": "Turkey", "almanya": "Germany", "fransa": "France",
     "italya": "Italy", "ispanya": "Spain", "ingiltere": "United Kingdom",
@@ -101,12 +133,15 @@ def name_to_iso3(name: str):
                 return c.alpha_3
     return None
 
-# --- UI ---
+# --- UI ve Tema Ayarları ---
 st.sidebar.header("Ayarlar")
 words = sorted(mapping.keys(), key=lambda s: s.lower())
 selected = st.sidebar.selectbox("Bir kelime seçin", words)
-highlight_color = st.sidebar.color_picker("Vurgulama rengi", "#FF7F0E")
-base_color = "#E8E8E8"
+
+# Varsayılan rengi projeye uygun bir Bordo tonu ile değiştirdik
+highlight_color = st.sidebar.color_picker("Vurgulama rengi", "#8B0000") 
+# Harita zeminini parşömen rengiyle uyumlu hale getirdik
+base_color = "#EAE0C8" 
 show_markers = st.sidebar.checkbox("Ülke işaretçileri göster", value=True)
 
 # --- seçili kelimenin girdilerini işle ---
@@ -151,8 +186,8 @@ fig.add_trace(go.Choropleth(
     locationmode="ISO-3",
     colorscale=[[0, base_color], [1, base_color]],
     showscale=False,
-    marker_line_color="rgba(0,0,0,0.2)",
-    marker_line_width=0.2,
+    marker_line_color="rgba(139, 0, 0, 0.2)", # Çizgileri hafif bordo tonuna çektik
+    marker_line_width=0.3,
     hoverinfo="none",
     name="world"
 ))
@@ -163,9 +198,9 @@ if iso_list:
         locations=iso_list,
         z=[1]*len(iso_list),
         locationmode="ISO-3",
-        colorscale=[[0, "white"], [1, highlight_color]],
+        colorscale=[[0, base_color], [1, highlight_color]],
         showscale=False,
-        marker_line_color="black",
+        marker_line_color="#4A0000",
         marker_line_width=1.4,
         hoverinfo="text",
         hovertext=hover_texts,
@@ -185,8 +220,17 @@ if show_markers and iso_list:
     ))
 
 fig.update_layout(
-    title_text=f"'{selected}' kelimesinin ülkelerdeki karşılıkları",
-    geo=dict(showframe=False, showcoastlines=True, projection_type="natural earth"),
+    title_text=f"'{selected}' kelimesinin dillerdeki izleri",
+    title_font=dict(family="Georgia, serif", size=20, color="#8B0000"),
+    geo=dict(
+        showframe=False, 
+        showcoastlines=True, 
+        coastlinecolor="rgba(139,0,0,0.3)",
+        projection_type="natural earth",
+        bgcolor="rgba(0,0,0,0)" # Arka planı şeffaf yaparak sayfa dokusunun görünmesini sağladık
+    ),
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="rgba(0,0,0,0)",
     margin=dict(l=10, r=10, t=50, b=10),
     transition=dict(duration=600, easing="cubic-in-out")
 )
@@ -196,17 +240,17 @@ col1, col2 = st.columns([3,1])
 with col1:
     st.plotly_chart(fig, use_container_width=True)
 with col2:
-    st.markdown("### Seçilen kelime")
-    st.write(selected)
-    st.markdown("### Ülkeler ve yerel karşılık")
+    st.markdown("### Seçilen Kelime")
+    st.write(f"**{selected}**")
+    st.markdown("### Ülkeler ve Yerel Karşılık")
     for e in entries:
         country_raw = e.get("country")
         local = e.get("local")
         if local:
-            st.write(f"- {country_raw}  —  Yerel karşılık: {local}")
+            st.write(f"- **{country_raw}** — *{local}*")
         else:
-            st.write(f"- {country_raw}")
+            st.write(f"- **{country_raw}**")
     if unrecognized:
-        st.markdown("### Tanınmayan ülke isimleri")
+        st.markdown("### Tanınmayan Ülke İsimleri")
         for u in unrecognized:
             st.error(u)
