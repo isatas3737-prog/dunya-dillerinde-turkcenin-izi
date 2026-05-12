@@ -15,23 +15,20 @@ custom_css = """
 header {visibility: hidden;}
 footer {visibility: hidden;}
 
-/* Yan paneli kapatma (ok) tuşunu gizleyerek paneli sürekli açık sabitleme */
+/* Yan paneli kapatma (ok) tuşunu KESİN olarak gizleyerek paneli sürekli açık sabitleme */
 [data-testid="collapsedControl"] {
     display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
 }
 
-/* Ana arka plan ve Piri Reis Haritası Filigranı (Doğrudan ana konteynere uygulandı) */
+/* Ana arka plan ve Piri Reis Haritası Filigranı */
 [data-testid="stAppViewContainer"] {
     background-image: linear-gradient(rgba(253, 246, 227, 0.88), rgba(253, 246, 227, 0.88)), url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Piri_reis_world_map_01.jpg/1024px-Piri_reis_world_map_01.jpg");
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-}
-
-/* Başlık renkleri ve fontu */
-h1, h2, h3, h4, h5, h6 {
-    color: #8B0000 !important;
-    font-family: 'Georgia', serif !important;
 }
 
 /* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz */
@@ -49,8 +46,16 @@ html, body, p, span, div, li {
 """
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# Başlık (Türk Bayrağı Emojisi eklendi)
-st.title("🇹🇷 Dünya Dillerinde Türkçenin İzi")
+# --- 3. Başlık (TR yazısı yerine HTML ile gerçek Türk Bayrağı resmi eklendi) ---
+st.markdown(
+    """
+    <h1 style="display: flex; align-items: center; color: #8B0000; font-family: 'Georgia', serif; font-size: 2.5rem; margin-bottom: 20px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg" width="55" style="margin-right: 15px; border-radius: 4px; box-shadow: 0px 2px 4px rgba(0,0,0,0.3);">
+        Dünya Dillerinde Türkçenin İzi
+    </h1>
+    """, 
+    unsafe_allow_html=True
+)
 
 # --- kelime.txt oku ---
 cwd = os.getcwd()
@@ -140,7 +145,9 @@ def name_to_iso3(name: str):
     return None
 
 # --- UI ve Tema Ayarları ---
-st.sidebar.header("Ayarlar")
+# Yan panel başlığı da projeye uyumlu olacak şekilde Bordo yapıldı
+st.sidebar.markdown("<h2 style='color: #8B0000; margin-top: 0;'>Ayarlar</h2>", unsafe_allow_html=True)
+
 words = sorted(mapping.keys(), key=lambda s: s.lower())
 selected = st.sidebar.selectbox("Bir kelime seçin", words)
 
@@ -234,7 +241,7 @@ if show_markers and iso_list:
     ))
 
 fig.update_layout(
-    title_text=f"'{selected}' kelimesinin dillerdeki izleri",
+    title_text=f"<b style='color:#8B0000;'>'{selected}'</b> kelimesinin dillerdeki izleri",
     title_font=dict(family="Georgia, serif", size=20, color="#8B0000"),
     geo=dict(
         showframe=False, 
@@ -254,9 +261,9 @@ col1, col2 = st.columns([3,1])
 with col1:
     st.plotly_chart(fig, use_container_width=True)
 with col2:
-    st.markdown("### Seçilen Kelime")
+    st.markdown("<h3 style='color:#8B0000;'>Seçilen Kelime</h3>", unsafe_allow_html=True)
     st.write(f"**{selected}**")
-    st.markdown("### Ülkeler ve Yerel Karşılık")
+    st.markdown("<h3 style='color:#8B0000;'>Ülkeler ve Yerel Karşılık</h3>", unsafe_allow_html=True)
     for e in entries:
         country_raw = e.get("country")
         local = e.get("local")
@@ -265,6 +272,6 @@ with col2:
         else:
             st.write(f"- **{country_raw}**")
     if unrecognized:
-        st.markdown("### Tanınmayan Ülke İsimleri")
+        st.markdown("<h3 style='color:#8B0000;'>Tanınmayan Ülke İsimleri</h3>", unsafe_allow_html=True)
         for u in unrecognized:
             st.error(u)
