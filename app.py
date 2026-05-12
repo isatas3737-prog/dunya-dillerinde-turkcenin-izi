@@ -5,61 +5,36 @@ import os
 import base64 # Yerel görseli CSS içine gömmek için gerekli kütüphane
 
 # --- 1. Sayfa Ayarları ve Başlık ---
-st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi", initial_sidebar_state="expanded")
+# Sidebar state ayarını sildik çünkü artık sol paneli hiç kullanmayacağız.
+st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi")
 
 # --- 2. Yerel Arka Plan Görselini Hazırlama (Base64) ---
 cwd = os.getcwd()
 bg_image_path = os.path.join(cwd, "arkaplan.jpg")
 
-# Eğer arkaplan.jpg varsa onu oku ve base64'e çevir, yoksa boş veya varsayılan bir renk bırak
 if os.path.exists(bg_image_path):
     with open(bg_image_path, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode()
     bg_image_url = f"data:image/jpeg;base64,{encoded_string}"
 else:
-    # Dosya bulunamazsa hata vermemesi için boş bırakıyoruz
     bg_image_url = ""
 
-# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran, Açılır/Kapanır Buton ve Mobil Uyumluluk ---
+# --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran ve Sidebar İptali ---
 custom_css = """
 <style>
-/* Sağ üstteki 'Share' menüsünü ve footer'ı tamamen gizleme */
+/* Sağ üstteki 'Share' menüsünü, header'ı ve footer'ı tamamen gizleme */
 #MainMenu {visibility: hidden;}
+header {visibility: hidden; height: 0px !important;}
 footer {visibility: hidden;}
 
-/* Üst kısımdaki gizli header'ın tıklamaları engellememesi için şeffaf ve etkileşimsiz yapıyoruz */
-header { 
-    background-color: transparent !important; 
-    pointer-events: none !important; 
-}
-
-/* Gereksiz Streamlit menülerini kaldırıyoruz */
-[data-testid="stToolbar"], [data-testid="stActionElements"] { 
-    display: none !important; 
-}
-
-/* YAN PANEL AÇMA VE KAPAMA BUTONLARINI GÖRÜNÜR, VURGULU VE TIKLANABİLİR YAPMA */
+/* SOL PANELİ VE SİNİR BOZUCU BUTONU KÖKÜNDEN YOK ETME */
 [data-testid="collapsedControl"],
-[data-testid="stSidebarCollapseButton"] {
-    pointer-events: auto !important; /* Şeffaf header'ın altından tıklanabilmesi için zorunlu */
-    background-color: rgba(139, 0, 0, 0.85) !important; /* Bordo Arka Plan */
-    border-radius: 6px !important;
-    margin: 5px !important;
-    transition: all 0.3s ease !important;
-    z-index: 99999 !important;
-}
-
-/* Fare üzerine geldiğinde butonun rengi koyulaşsın */
-[data-testid="collapsedControl"]:hover,
-[data-testid="stSidebarCollapseButton"]:hover {
-    background-color: rgba(139, 0, 0, 1) !important;
-}
-
-/* Butonun içindeki ok ikonunu beyaz yapıyoruz */
-[data-testid="collapsedControl"] svg,
-[data-testid="stSidebarCollapseButton"] svg {
-    fill: white !important;
-    color: white !important;
+[data-testid="stSidebarCollapseButton"],
+section[data-testid="stSidebar"] {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    visibility: hidden !important;
 }
 
 /* Ana arka plan ve YEREL Piri Reis Haritası Filigranı */
@@ -70,51 +45,20 @@ header {
     background-attachment: fixed;
 }
 
-/* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz ve tıklamaları engellememesi için auto yapıyoruz */
-[data-testid="stSidebar"] {
-    background-color: rgba(244, 236, 216, 0.95) !important;
-    border-right: 2px solid #D3C6A6 !important;
-    pointer-events: auto !important;
-    min-width: 320px !important;
-    max-width: 320px !important; 
-}
-
 /* Genel metin stili */
 html, body, p, span, div, li {
     font-family: 'Georgia', serif !important;
     color: #3E2723;
 }
-
-/* --- MOBİL UYUMLULUK (RESPONSIVE) AYARLARI --- */
-@media (max-width: 768px) {
-    /* Mobilde yan panelin tüm ekranı kaplaması için */
-    [data-testid="stSidebar"] {
-        min-width: 100% !important;
-        max-width: 100% !important; 
-    }
-    
-    /* Mobilde başlık boyutlarını ekrana sığması için küçültüyoruz */
-    h1 {
-        font-size: 1.6rem !important;
-        line-height: 1.3 !important;
-    }
-    
-    /* Mobilde Türk bayrağı boyutunu orantılı küçültüyoruz */
-    h1 img {
-        width: 35px !important;
-        margin-right: 10px !important;
-    }
-}
 </style>
 """
-# Hazırladığımız yerel base64 görselini CSS kodunun içine yerleştiriyoruz
 custom_css = custom_css.replace("BG_IMAGE_URL_PLACEHOLDER", bg_image_url)
 st.markdown(custom_css, unsafe_allow_html=True)
 
 # --- 4. Başlık (HTML ile gerçek Türk Bayrağı resmi eklendi) ---
 st.markdown(
     """
-    <h1 style="display: flex; align-items: center; color: #8B0000; font-family: 'Georgia', serif; margin-bottom: 20px;">
+    <h1 style="display: flex; align-items: center; color: #8B0000; font-family: 'Georgia', serif; font-size: 2.5rem; margin-bottom: 5px;">
         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg" width="55" style="margin-right: 15px; border-radius: 4px; box-shadow: 0px 2px 4px rgba(0,0,0,0.3);">
         Dünya Dillerinde Türkçenin İzi
     </h1>
@@ -174,6 +118,34 @@ if not mapping:
     st.error("kelime.txt parse edilemedi veya uygun satır yok.")
     st.stop()
 
+# --- ÜST BANNER (AYARLAR VE PROJE BİLGİSİ YATAY OLARAK BURADA) ---
+st.markdown("<hr style='margin: 5px 0 15px 0; border-color: rgba(139, 0, 0, 0.2);'>", unsafe_allow_html=True)
+
+banner_col1, banner_col2, banner_col3 = st.columns([1.5, 1, 2])
+
+with banner_col1:
+    st.markdown("<h4 style='color:#8B0000; margin-top:0;'>📌 Kelime Seçimi</h4>", unsafe_allow_html=True)
+    words = sorted(mapping.keys(), key=lambda s: s.lower())
+    selected = st.selectbox("Haritada incelemek istediğiniz kelimeyi seçin:", words, label_visibility="collapsed")
+
+with banner_col2:
+    st.markdown("<h4 style='color:#8B0000; margin-top:0;'>🎨 Görünüm</h4>", unsafe_allow_html=True)
+    highlight_color = st.color_picker("Vurgulama Rengi", "#8B0000") 
+    show_markers = st.checkbox("Ülke İşaretçileri", value=True)
+
+with banner_col3:
+    # Proje bilgilerini şık bir kutu içine aldık
+    st.markdown("""
+    <div style="background-color: rgba(244, 236, 216, 0.7); padding: 12px; border-radius: 8px; border-left: 5px solid #8B0000; font-size: 15px; box-shadow: 0px 2px 4px rgba(0,0,0,0.1);">
+        <b>Okul:</b> Yahya Turan Fen Lisesi &nbsp;|&nbsp; <b>Danışman:</b> İsa TAŞ<br>
+        <b>Öğrenciler:</b> Meryem Rana GÖÇMEZ, Mehmet AÇIKGÖZ, Eylül ÖZELKARA<br>
+        <span style="color: #2e8b57; font-weight: bold; margin-top: 5px; display: inline-block;">Sistem Aktif 🟢</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.markdown("<hr style='margin: 15px 0 20px 0; border-color: rgba(139, 0, 0, 0.2);'>", unsafe_allow_html=True)
+# --- ÜST BANNER BİTİŞ ---
+
 # --- basit Türkçe -> İngilizce ülke eşleme ---
 tur_to_eng = {
     "türkiye": "Turkey", "almanya": "Germany", "fransa": "France",
@@ -222,23 +194,6 @@ def name_to_iso3(name: str):
             if hasattr(c, "common_name") and getattr(c, "common_name", "").lower() == cand.lower():
                 return c.alpha_3
     return None
-
-# --- UI ve Tema Ayarları ---
-st.sidebar.markdown("<h2 style='color: #8B0000; margin-top: 0;'>Ayarlar</h2>", unsafe_allow_html=True)
-
-words = sorted(mapping.keys(), key=lambda s: s.lower())
-selected = st.sidebar.selectbox("Bir kelime seçin", words)
-
-highlight_color = st.sidebar.color_picker("Vurgulama rengi", "#8B0000") 
-show_markers = st.sidebar.checkbox("Ülke işaretçileri göster", value=True)
-
-# --- Proje Bilgileri (Yan Panel) ---
-st.sidebar.markdown("---")
-st.sidebar.markdown("**Okul:** Yahya Turan Fen Lisesi")
-st.sidebar.markdown("**Danışman Öğretmen:** İsa TAŞ")
-st.sidebar.markdown("**Öğrenciler:** <br>Meryem Rana GÖÇMEZ <br>Mehmet AÇIKGÖZ <br>Eylül ÖZELKARA", unsafe_allow_html=True)
-
-st.sidebar.markdown("<br><br><br><div style='color: #2e8b57; font-weight: bold; font-family: sans-serif; font-size: 14px;'>Sistem Aktif 🟢</div>", unsafe_allow_html=True)
 
 base_color = "#EAE0C8" 
 
@@ -328,11 +283,11 @@ fig.update_layout(
     ),
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
-    margin=dict(l=10, r=10, t=50, b=10),
+    margin=dict(l=10, r=10, t=20, b=10),
     transition=dict(duration=600, easing="cubic-in-out")
 )
 
-# --- göster ve yan panel ---
+# --- göster ve sağ panel ---
 col1, col2 = st.columns([3,1])
 with col1:
     st.plotly_chart(fig, use_container_width=True)
