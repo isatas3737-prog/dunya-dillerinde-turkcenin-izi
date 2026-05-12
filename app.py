@@ -4,9 +4,10 @@ import plotly.graph_objects as go
 import os
 
 # --- 1. Sayfa Ayarları ve Başlık ---
-st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi")
+# initial_sidebar_state="expanded" ile yan panelin her zaman açık başlamasını sağlıyoruz
+st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi", initial_sidebar_state="expanded")
 
-# --- 2. Özel CSS ile Tarihi Tema, Filigran ve Menü Gizleme ---
+# --- 2. Özel CSS ile Tarihi Tema, Filigran, Menü Gizleme ve Panel Sabitleme ---
 custom_css = """
 <style>
 /* Sağ üstteki 'Share' menüsünü, header'ı ve footer'ı tamamen gizleme */
@@ -14,25 +15,17 @@ custom_css = """
 header {visibility: hidden;}
 footer {visibility: hidden;}
 
-/* Ana arka plan rengi */
-.stApp {
-    background-color: #FDF6E3;
+/* Yan paneli kapatma (ok) tuşunu gizleyerek paneli sürekli açık sabitleme */
+[data-testid="collapsedControl"] {
+    display: none !important;
 }
 
-/* Piri Reis Haritası Filigranı */
-.stApp::before {
-    content: "";
-    position: fixed; /* Kaydırmalarda haritanın sabit kalması için */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Piri_reis_world_map_01.jpg/1024px-Piri_reis_world_map_01.jpg");
+/* Ana arka plan ve Piri Reis Haritası Filigranı (Doğrudan ana konteynere uygulandı) */
+[data-testid="stAppViewContainer"] {
+    background-image: linear-gradient(rgba(253, 246, 227, 0.88), rgba(253, 246, 227, 0.88)), url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Piri_reis_world_map_01.jpg/1024px-Piri_reis_world_map_01.jpg");
     background-size: cover;
     background-position: center center;
-    opacity: 0.12; /* Metinlerin okunurluğunu bozmamak için şeffaflık seviyesi */
-    z-index: -1; /* En arka planda kalmasını sağlar */
-    pointer-events: none;
+    background-attachment: fixed;
 }
 
 /* Başlık renkleri ve fontu */
@@ -41,9 +34,9 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Georgia', serif !important;
 }
 
-/* Yan panel (Sidebar) arka planını hafif yarı saydam yapıyoruz */
+/* Yan panel (Sidebar) arka planını yarı saydam yapıyoruz */
 [data-testid="stSidebar"] {
-    background-color: rgba(244, 236, 216, 0.90);
+    background-color: rgba(244, 236, 216, 0.95);
     border-right: 2px solid #D3C6A6;
 }
 
@@ -56,7 +49,7 @@ html, body, p, span, div, li {
 """
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# Başlık (TR yerine Türk Bayrağı Emojisi eklendi)
+# Başlık (Türk Bayrağı Emojisi eklendi)
 st.title("🇹🇷 Dünya Dillerinde Türkçenin İzi")
 
 # --- kelime.txt oku ---
@@ -152,8 +145,19 @@ words = sorted(mapping.keys(), key=lambda s: s.lower())
 selected = st.sidebar.selectbox("Bir kelime seçin", words)
 
 highlight_color = st.sidebar.color_picker("Vurgulama rengi", "#8B0000") 
-base_color = "#EAE0C8" 
 show_markers = st.sidebar.checkbox("Ülke işaretçileri göster", value=True)
+
+# --- Proje Bilgileri (Yan Panel) ---
+st.sidebar.markdown("---")
+st.sidebar.markdown("**Okul:** Yahya Turan Fen Lisesi")
+st.sidebar.markdown("**Danışman Öğretmen:** İsa TAŞ")
+st.sidebar.markdown("**Öğrenciler:** <br>Meryem Rana GÖÇMEZ <br>Mehmet AÇIKGÖZ <br>Eylül ÖZELKARA", unsafe_allow_html=True)
+
+# Boşluk bırakıp en alta "Sistem Aktif" yazısını ekliyoruz
+st.sidebar.markdown("<br><br><br><div style='color: #2e8b57; font-weight: bold; font-family: sans-serif; font-size: 14px;'>Sistem Aktif 🟢</div>", unsafe_allow_html=True)
+
+
+base_color = "#EAE0C8" 
 
 # --- seçili kelimenin girdilerini işle ---
 entries = mapping.get(selected, [])
