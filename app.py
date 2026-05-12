@@ -36,15 +36,16 @@ section[data-testid="stSidebar"] {
     visibility: hidden !important;
 }
 
-/* Renk paletini daha ince ve zarif yapma */
+/* Renk paletini daha ince, hizalı ve zarif yapma */
 [data-testid="stColorPicker"] {
-    margin-top: -2px;
+    width: 100%;
 }
 [data-testid="stColorPicker"] > div[data-baseweb="block"] > div {
-    height: 28px !important;
-    min-height: 28px !important;
+    height: 26px !important;
+    min-height: 26px !important;
     padding: 0 !important;
-    border-radius: 4px !important;
+    border-radius: 5px !important;
+    cursor: pointer;
 }
 
 /* Ana arka plan ve YEREL Piri Reis Haritası Filigranı */
@@ -131,33 +132,35 @@ if not mapping:
 # --- ÜST BANNER (AYARLAR VE PROJE BİLGİSİ YATAY OLARAK BURADA) ---
 st.markdown("<hr style='margin: 5px 0 15px 0; border-color: rgba(139, 0, 0, 0.2);'>", unsafe_allow_html=True)
 
-# Sütun oranlarını iç içe rahat sığması için hafifçe revize ettik
 banner_col1, banner_col2, banner_col3 = st.columns([1.2, 1.2, 2.2])
 
 with banner_col1:
     st.markdown("<h4 style='color:#8B0000; margin-top:0; margin-bottom: 12px;'>📌 Kelime Seçimi</h4>", unsafe_allow_html=True)
     words = sorted(mapping.keys(), key=lambda s: s.lower())
     selected = st.selectbox("Haritada incelemek istediğiniz kelimeyi seçin:", words, label_visibility="collapsed")
+    # Diğer sütunlarla eşit yükseklikte durması için eklenen dengeleyici boşluk
+    st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
 
 with banner_col2:
     st.markdown("<h4 style='color:#8B0000; margin-top:0; margin-bottom: 12px;'>🎨 Görünüm</h4>", unsafe_allow_html=True)
     
-    # Yazı ve renk paletini yan yana koymak için iç sütunlar açtık
-    c1, c2 = st.columns([1.3, 1])
+    # Yazı ve renk paletini yan yana ve hizalı gösteriyoruz
+    c1, c2 = st.columns([1.3, 1], gap="small")
     with c1:
-        st.markdown("<div style='margin-top: 2px; font-size: 15px;'>Vurgulama Rengi:</div>", unsafe_allow_html=True)
+        st.markdown("<div style='margin-top: 4px; font-size: 15px; color: #3E2723;'>Vurgulama Rengi:</div>", unsafe_allow_html=True)
     with c2:
         highlight_color = st.color_picker("Vurgulama Rengi", "#8B0000", label_visibility="collapsed")
     
-    # Ülke işaretçileri hemen paletin altında
+    # İşaretçi checkbox'ı tam altına
+    st.markdown("<div style='margin-top: -8px;'></div>", unsafe_allow_html=True)
     show_markers = st.checkbox("Ülke İşaretçileri", value=True)
 
 with banner_col3:
-    # Kutunun dikey yüksekliğini (height: 110px) sabitledik ve içindeki yazıları ortaladık
+    # Proje bilgilerini şık ve diğerleriyle EŞİT YÜKSEKLİKTE (110px) bir kutu içine aldık
     st.markdown("""
     <div style="background-color: rgba(244, 236, 216, 0.7); padding: 10px 15px; border-radius: 8px; border-left: 5px solid #8B0000; font-size: 14.5px; box-shadow: 0px 2px 4px rgba(0,0,0,0.1); height: 110px; display: flex; flex-direction: column; justify-content: center;">
-        <div style="margin-bottom: 4px;"><b>Okul:</b> Yahya Turan Fen Lisesi &nbsp;|&nbsp; <b>Danışman:</b> İsa TAŞ</div>
-        <div style="margin-bottom: 4px;"><b>Öğrenciler:</b> Meryem Rana GÖÇMEZ, Mehmet AÇIKGÖZ, Eylül ÖZELKARA</div>
+        <div style="margin-bottom: 5px;"><b>Okul:</b> Yahya Turan Fen Lisesi &nbsp;|&nbsp; <b>Danışman:</b> İsa TAŞ</div>
+        <div style="margin-bottom: 5px;"><b>Öğrenciler:</b> Meryem Rana GÖÇMEZ, Mehmet AÇIKGÖZ, Eylül ÖZELKARA</div>
         <div style="color: #2e8b57; font-weight: bold;">Sistem Aktif 🟢</div>
     </div>
     """, unsafe_allow_html=True)
