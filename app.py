@@ -2,7 +2,7 @@ import streamlit as st
 import pycountry
 import plotly.graph_objects as go
 import os
-import base64 # Yerel görseli CSS içine gömmek için gerekli kütüphane
+import base64 
 
 # --- 1. Sayfa Ayarları ve Başlık ---
 st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi", initial_sidebar_state="expanded")
@@ -11,13 +11,11 @@ st.set_page_config(layout="wide", page_title="Dünya Dillerinde Türkçenin İzi
 cwd = os.getcwd()
 bg_image_path = os.path.join(cwd, "arkaplan.jpg")
 
-# Eğer arkaplan.jpg varsa onu oku ve base64'e çevir, yoksa boş veya varsayılan bir renk bırak
 if os.path.exists(bg_image_path):
     with open(bg_image_path, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode()
     bg_image_url = f"data:image/jpeg;base64,{encoded_string}"
 else:
-    # Dosya bulunamazsa hata vermemesi için boş bırakıyoruz
     bg_image_url = ""
 
 # --- 3. Özel CSS ile Tarihi Tema, Yerel Filigran, Menü Gizleme ve Panel Sabitleme ---
@@ -65,7 +63,6 @@ html, body, p, span, div, li {
 }
 </style>
 """
-# Hazırladığımız yerel base64 görselini CSS kodunun içine yerleştiriyoruz
 custom_css = custom_css.replace("BG_IMAGE_URL_PLACEHOLDER", bg_image_url)
 st.markdown(custom_css, unsafe_allow_html=True)
 
@@ -132,12 +129,45 @@ if not mapping:
     st.error("kelime.txt parse edilemedi veya uygun satır yok.")
     st.stop()
 
-# --- basit Türkçe -> İngilizce ülke eşleme ---
+# --- 5. Eşleştirme ve Çeviri Sözlükleri ---
 tur_to_eng = {
     "türkiye": "Turkey", "almanya": "Germany", "fransa": "France",
     "italya": "Italy", "ispanya": "Spain", "ingiltere": "United Kingdom",
     "çin": "China", "hindistan": "India", "brezilya": "Brazil", "meksika": "Mexico",
     "japonya": "Japan", "rusya": "Russia", "kanada": "Canada", "avustralya": "Australia"
+}
+
+# ISO kodlarını ekranda düzgün Türkçe göstermek için sözlük
+iso_to_tur = {
+    "TUR": "Türkiye", "DEU": "Almanya", "FRA": "Fransa", "ITA": "İtalya",
+    "ESP": "İspanya", "GBR": "İngiltere", "CHN": "Çin", "IND": "Hindistan",
+    "BRA": "Brezilya", "MEX": "Meksika", "JPN": "Japonya", "RUS": "Rusya",
+    "CAN": "Kanada", "AUS": "Avustralya", "IRN": "İran", "ARM": "Ermenistan",
+    "HUN": "Macaristan", "SRB": "Sırbistan", "MKD": "Kuzey Makedonya",
+    "ALB": "Arnavutluk", "GRC": "Yunanistan", "BGR": "Bulgaristan",
+    "GEO": "Gürcistan", "AZE": "Azerbaycan", "SYR": "Suriye", "IRQ": "Irak",
+    "USA": "ABD", "UKR": "Ukrayna", "ROU": "Romanya", "BIH": "Bosna-Hersek",
+    "HRV": "Hırvatistan", "KAZ": "Kazakistan", "UZB": "Özbekistan",
+    "TKM": "Türkmenistan", "KGZ": "Kırgızistan", "TJK": "Tacikistan",
+    "AFG": "Afganistan", "PAK": "Pakistan", "EGY": "Mısır", "SAU": "Suudi Arabistan",
+    "SWE": "İsveç", "NOR": "Norveç", "FIN": "Finlandiya", "DNK": "Danimarka",
+    "NLD": "Hollanda", "BEL": "Belçika", "CHE": "İsviçre", "AUT": "Avusturya",
+    "POL": "Polonya", "CZE": "Çekya", "SVK": "Slovakya", "IRL": "İrlanda",
+    "PRT": "Portekiz", "ZAF": "Güney Afrika", "KOR": "Güney Kore", "PRK": "Kuzey Kore",
+    "TWN": "Tayvan", "CUB": "Küba", "ARG": "Arjantin", "CHL": "Şili",
+    "COL": "Kolombiya", "VEN": "Venezuela", "PER": "Peru", "NZL": "Yeni Zelanda",
+    "ISR": "İsrail", "LBN": "Lübnan", "JOR": "Ürdün", "ARE": "Birleşik Arap Emirlikleri", 
+    "QAT": "Katar", "KWT": "Kuveyt", "OMN": "Umman", "YEM": "Yemen", "MAR": "Fas", 
+    "DZA": "Cezayir", "TUN": "Tunus", "LBY": "Libya", "SDN": "Sudan", "SOM": "Somali", 
+    "ETH": "Etiyopya", "KEN": "Kenya", "NGA": "Nijerya", "GHA": "Gana", 
+    "SEN": "Senegal", "MLI": "Mali", "MYS": "Malezya", "IDN": "Endonezya", 
+    "THA": "Tayland", "VNM": "Vietnam", "PHL": "Filipinler", "SGP": "Singapur", 
+    "BGD": "Bangladeş", "LKA": "Sri Lanka", "NPL": "Nepal", "MMR": "Myanmar", 
+    "KHM": "Kamboçya", "LAO": "Laos", "MNG": "Moğolistan", "BLR": "Belarus", 
+    "MDA": "Moldova", "LTU": "Litvanya", "LVA": "Letonya", "EST": "Estonya", 
+    "ISL": "İzlanda", "CYP": "Kıbrıs", "MLT": "Malta", "MCO": "Monako", 
+    "SMR": "San Marino", "VAT": "Vatikan", "AND": "Andorra", "LIE": "Lihtenştayn", 
+    "LUX": "Lüksemburg", "KOS": "Kosova", "MNE": "Karadağ"
 }
 
 def name_to_iso3(name: str):
@@ -190,27 +220,34 @@ entries = mapping.get(selected, [])
 iso_list = []
 hover_texts = []
 unrecognized = []
+
 for e in entries:
     country_raw = e.get("country")
     local = e.get("local")
+    
+    # ISO kodunu bul
     iso = name_to_iso3(country_raw)
+    if not iso:
+        eng = tur_to_eng.get(country_raw.lower())
+        if eng:
+            iso = name_to_iso3(eng)
+            
+    # Ekranda gösterilecek Türkçe adı belirle
+    display_name = country_raw
+    if iso and iso in iso_to_tur:
+        display_name = iso_to_tur[iso]
+    elif country_raw.lower() in tur_to_eng:
+        display_name = country_raw.title()
+        
+    e["display_name"] = display_name # UI listesi için kaydet
+    
     if iso:
         iso_list.append(iso)
         if local:
-            hover_texts.append(f"{country_raw}\nYerel karşılık: {local}")
+            hover_texts.append(f"{display_name}\nYerel karşılık: {local}")
         else:
-            hover_texts.append(f"{country_raw}")
+            hover_texts.append(f"{display_name}")
     else:
-        eng = tur_to_eng.get(country_raw.lower())
-        if eng:
-            iso2 = name_to_iso3(eng)
-            if iso2:
-                iso_list.append(iso2)
-                if local:
-                    hover_texts.append(f"{country_raw}\nYerel karşılık: {local}")
-                else:
-                    hover_texts.append(f"{country_raw}")
-                continue
         unrecognized.append(country_raw)
 
 # --- tüm dünya ISO-3 listesi ---
@@ -284,12 +321,12 @@ with col2:
     st.write(f"**{selected}**")
     st.markdown("<h3 style='color:#8B0000;'>Ülkeler ve Yerel Karşılık</h3>", unsafe_allow_html=True)
     for e in entries:
-        country_raw = e.get("country")
+        display_name = e.get("display_name", e.get("country"))
         local = e.get("local")
         if local:
-            st.write(f"- **{country_raw}** — *{local}*")
+            st.write(f"- **{display_name}** — *{local}*")
         else:
-            st.write(f"- **{country_raw}**")
+            st.write(f"- **{display_name}**")
     if unrecognized:
         st.markdown("<h3 style='color:#8B0000;'>Tanınmayan Ülke İsimleri</h3>", unsafe_allow_html=True)
         for u in unrecognized:
