@@ -36,6 +36,17 @@ section[data-testid="stSidebar"] {
     visibility: hidden !important;
 }
 
+/* Renk paletini daha ince ve zarif yapma */
+[data-testid="stColorPicker"] {
+    margin-top: -2px;
+}
+[data-testid="stColorPicker"] > div[data-baseweb="block"] > div {
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 0 !important;
+    border-radius: 4px !important;
+}
+
 /* Ana arka plan ve YEREL Piri Reis Haritası Filigranı */
 [data-testid="stAppViewContainer"] {
     background-image: linear-gradient(rgba(253, 246, 227, 0.88), rgba(253, 246, 227, 0.88)), url("BG_IMAGE_URL_PLACEHOLDER");
@@ -120,31 +131,34 @@ if not mapping:
 # --- ÜST BANNER (AYARLAR VE PROJE BİLGİSİ YATAY OLARAK BURADA) ---
 st.markdown("<hr style='margin: 5px 0 15px 0; border-color: rgba(139, 0, 0, 0.2);'>", unsafe_allow_html=True)
 
-banner_col1, banner_col2, banner_col3 = st.columns([1.5, 1, 2])
+# Sütun oranlarını iç içe rahat sığması için hafifçe revize ettik
+banner_col1, banner_col2, banner_col3 = st.columns([1.2, 1.2, 2.2])
 
 with banner_col1:
-    st.markdown("<h4 style='color:#8B0000; margin-top:0;'>📌 Kelime Seçimi</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='color:#8B0000; margin-top:0; margin-bottom: 12px;'>📌 Kelime Seçimi</h4>", unsafe_allow_html=True)
     words = sorted(mapping.keys(), key=lambda s: s.lower())
     selected = st.selectbox("Haritada incelemek istediğiniz kelimeyi seçin:", words, label_visibility="collapsed")
 
 with banner_col2:
-    st.markdown("<h4 style='color:#8B0000; margin-top:0;'>🎨 Görünüm</h4>", unsafe_allow_html=True)
-    # Görünüm ayarlarını kendi içinde iki yan yana sütuna bölüyoruz
-    g_col1, g_col2 = st.columns([1, 1.5])
-    with g_col1:
-        highlight_color = st.color_picker("Vurgulama Rengi", "#8B0000") 
-    with g_col2:
-        # Checkbox'ın renk seçici kareyle dikeyde aynı hizada durması için boşluk ekliyoruz
-        st.markdown("<div style='margin-top: 32px;'></div>", unsafe_allow_html=True)
-        show_markers = st.checkbox("Ülke İşaretçileri", value=True)
+    st.markdown("<h4 style='color:#8B0000; margin-top:0; margin-bottom: 12px;'>🎨 Görünüm</h4>", unsafe_allow_html=True)
+    
+    # Yazı ve renk paletini yan yana koymak için iç sütunlar açtık
+    c1, c2 = st.columns([1.3, 1])
+    with c1:
+        st.markdown("<div style='margin-top: 2px; font-size: 15px;'>Vurgulama Rengi:</div>", unsafe_allow_html=True)
+    with c2:
+        highlight_color = st.color_picker("Vurgulama Rengi", "#8B0000", label_visibility="collapsed")
+    
+    # Ülke işaretçileri hemen paletin altında
+    show_markers = st.checkbox("Ülke İşaretçileri", value=True)
 
 with banner_col3:
-    # Proje bilgilerini şık bir kutu içine aldık
+    # Kutunun dikey yüksekliğini (height: 110px) sabitledik ve içindeki yazıları ortaladık
     st.markdown("""
-    <div style="background-color: rgba(244, 236, 216, 0.7); padding: 12px; border-radius: 8px; border-left: 5px solid #8B0000; font-size: 15px; box-shadow: 0px 2px 4px rgba(0,0,0,0.1);">
-        <b>Okul:</b> Yahya Turan Fen Lisesi &nbsp;|&nbsp; <b>Danışman:</b> İsa TAŞ<br>
-        <b>Öğrenciler:</b> Meryem Rana GÖÇMEZ, Mehmet AÇIKGÖZ, Eylül ÖZELKARA<br>
-        <span style="color: #2e8b57; font-weight: bold; margin-top: 5px; display: inline-block;">Sistem Aktif 🟢</span>
+    <div style="background-color: rgba(244, 236, 216, 0.7); padding: 10px 15px; border-radius: 8px; border-left: 5px solid #8B0000; font-size: 14.5px; box-shadow: 0px 2px 4px rgba(0,0,0,0.1); height: 110px; display: flex; flex-direction: column; justify-content: center;">
+        <div style="margin-bottom: 4px;"><b>Okul:</b> Yahya Turan Fen Lisesi &nbsp;|&nbsp; <b>Danışman:</b> İsa TAŞ</div>
+        <div style="margin-bottom: 4px;"><b>Öğrenciler:</b> Meryem Rana GÖÇMEZ, Mehmet AÇIKGÖZ, Eylül ÖZELKARA</div>
+        <div style="color: #2e8b57; font-weight: bold;">Sistem Aktif 🟢</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -288,7 +302,6 @@ fig.update_layout(
     ),
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
-    # t=60 yaparak başlığın çizginin altında kalmasını engelledik
     margin=dict(l=10, r=10, t=60, b=10),
     transition=dict(duration=600, easing="cubic-in-out")
 )
